@@ -8,6 +8,18 @@
 </head>
 <body>
 
+<div id="top">
+  <div id="bar">
+    <div style="float: right;"><%= yield :bar %></div>
+  </div>
+  <% if alert %>
+    <div id="alert"><%= alert %></div>
+  <% end %>
+  <% if notice %>
+    <div id="notice"><%= notice %></div>
+  <% end %>
+</div>
+
 <%= yield %>
 
 </body>

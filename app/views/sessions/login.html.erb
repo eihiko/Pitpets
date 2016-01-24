@@ -1,0 +1,9 @@
+<% content_for :bar do %>
+  <%= form_tag({controller: "sessions", action: "login_attempt"}, method: "post", class: "login") do %>
+    <%= label_tag(:username, "username:") %>
+    <%= text_field_tag(:username) %>
+    <%= label_tag(:password, "password:") %>
+    <%= password_field_tag(:password) %>
+    <%= submit_tag("login") %>
+  <% end %>
+<% end %>
