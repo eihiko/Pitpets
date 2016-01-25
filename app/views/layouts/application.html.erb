@@ -9,14 +9,20 @@
 <body>
 
 <div id="top">
-  <div id="bar">
-    <div style="float: right;"><%= yield :bar %></div>
+  <div id="userbar" class="bar">
+    <div style="float: right;">
+      <% if session[:user_id] %>
+        <%= render "/layouts/userbar" %>
+      <% else %>
+        <%= render "/layouts/login" %>
+      <% end %>
+    </div>
   </div>
   <% if alert %>
-    <div id="alert"><%= alert %></div>
+    <div id="alert" class="bar"><%= alert %></div>
   <% end %>
   <% if notice %>
-    <div id="notice"><%= notice %></div>
+    <div id="notice" class="bar"><%= notice %></div>
   <% end %>
 </div>
 

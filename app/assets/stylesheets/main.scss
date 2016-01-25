@@ -1,0 +1,46 @@
+$c_background: #DDDDDD;
+$c_bar: #EEEEEE;
+$c_bar_border: #CCCCCC;
+$c_alert: #FF0000;
+$c_notice: #00AA00;
+
+body {
+  background-color: $c_background;
+  padding: 0px;
+  margin: 0px;
+}
+
+#top {
+  margin-bottom: 30px;
+}
+
+.bar {
+  height: 30px;
+  vertical-align: middle;
+  line-height: 30px;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
+  background-color: $c_bar;
+  border-style: solid;
+  border-color: $c_bar_border;
+  border-width: 0px 0px 2px 0px;
+}
+
+#userbar {
+  background-image: url("/img/pitpets_logo.png");
+  background-position: 0.5% 0%;
+  background-repeat: no-repeat;
+  padding-left: 160px;
+}
+
+#alert {
+  color: $c_alert;
+}
+
+#notice {
+  color: $c_notice;
+}
+
+#login {
+  display: inline;
+}
