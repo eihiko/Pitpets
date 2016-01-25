@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to({controller: "sessions", action: "home"}, notice: "Welcome back!")
     else
-      redirect_to({controller: "sessions", action: "login"}, alert: "User authentication failed.")
+      redirect_to({controller: "users", action: "new"}, alert: "User authentication failed.")
     end
   end
 
