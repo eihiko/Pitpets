@@ -12,6 +12,14 @@ Rails.application.routes.draw do
   get '/settings' => "sessions#settings"
 
   resources :users
+  
+  namespace :api do
+
+    resources :users
+
+    get "/users/earn/:id/:amount" => "users#earn"
+
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

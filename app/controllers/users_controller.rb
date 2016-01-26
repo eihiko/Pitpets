@@ -4,11 +4,12 @@ class UsersController < ApplicationController
   before_action :require_logout
 
   def new
-    puts alert
   end
 
   def create
-    user = User.create(username: params[:username], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+    user = User.new(username: params[:username], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+    user.guid = SecureRandom.uuid
+    user.save
     if user.valid?
       redirect_to "/", notice: "Your account has been created! Welcome to Pitpets!"
     else
