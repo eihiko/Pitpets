@@ -3,9 +3,6 @@ class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:login, :login_attempt]
   before_action :require_logout, only: [:login, :login_attempt]
 
-  def login
-  end
-
   def home
   end
 

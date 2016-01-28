@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get '/login' => "sessions#login"
-
   post '/login_attempt' => "sessions#login_attempt"
 
   get '/logout' => "sessions#logout"
