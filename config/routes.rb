@@ -10,6 +10,12 @@ Rails.application.routes.draw do
   get '/settings' => "sessions#settings"
 
   resources :users
+
+  namespace :games do
+
+    get "/pitpex" => "pitpex#index"
+    
+  end
   
   namespace :api do
 

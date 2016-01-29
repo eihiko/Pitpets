@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
       @current_user = User.find session[:user_id]
       return true
     else
-      redirect_to controller: "users", action: "new"
+      redirect_to controller: "/users", action: "new"
       return false
     end
   end
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   def require_logout
     if session[:user_id]
       @current_user = User.find session[:user_id]
-      redirect_to controller: "sessions", action: "home"
+      redirect_to controller: "/sessions", action: "home"
       return false
     else
       return true

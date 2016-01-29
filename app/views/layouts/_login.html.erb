@@ -1,4 +1,4 @@
-<%= form_tag({controller: "sessions", action: "login_attempt"}, method: "post", class: "login") do %>
+<%= form_tag({controller: "/sessions", action: "login_attempt"}, method: "post", class: "login") do %>
   <%= label_tag(:username, "username:") %>
   <%= text_field_tag(:username) %>
   <%= label_tag(:password, "password:") %>
