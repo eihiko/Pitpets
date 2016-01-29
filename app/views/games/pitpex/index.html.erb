@@ -1,6 +1,17 @@
 <% content_for :head do %>
-  <link rel="stylesheet" href="TemplateData/style.css">
-  <script src="TemplateData/UnityProgress.js"></script>
+  <link href="/gamedata/pitpex/style.css" media="all" rel="stylesheet" />
+  <script src="/gamedata/pitpex/UnityProgress.js"></script>
+  <script type='text/javascript'>
+    var Module = {
+      TOTAL_MEMORY: 268435456,
+      errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+      compatibilitycheck: null,
+      dataUrl: "<%= asset_path 'gamedata/pitpex/SharedPitpets.data' %>",
+      codeUrl: "<%= asset_path 'gamedata/pitpex/SharedPitpets.js' %>",
+      memUrl: "<%= asset_path 'gamedata/pitpex/SharedPitpets.mem' %>",
+    };
+  </script>
+  <script src="/gamedata/pitpex/UnityLoader.js"></script>
   <script type="text/javascript">
       function PitpexLoaded(){
           SendMessage("Pitpex", "Login", "<%= @current_user.guid %>");
@@ -17,15 +28,6 @@
     <div class="title">Pitpex</div>
   </div>
   <p class="footer">&laquo; created with <a href="http://unity3d.com/" title="Go to unity3d.com">Unity</a> &raquo;</p>
-  <script type='text/javascript'>
-  var Module = {
-    TOTAL_MEMORY: 268435456,
-    errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
-    compatibilitycheck: null,
-    dataUrl: "Release/SharedPitpets.data",
-    codeUrl: "Release/SharedPitpets.js",
-    memUrl: "Release/SharedPitpets.mem",
-  };
-</script>
-<script src="Release/UnityLoader.js"></script>
+
+  
 
