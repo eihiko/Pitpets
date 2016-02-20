@@ -9,6 +9,7 @@ namespace :games do
     Dir.chdir "games"
     games = Dir["*.pitpex"]
     games.each do |g|
+      next if File.exists? "#{g}/installed"
       name = g.chomp(".pitpex")
       gamedata = "../../public/gamedata/#{name.underscore}"
       viewpath = "../../app/views/games/#{name.underscore}"
@@ -27,7 +28,7 @@ namespace :games do
         File.open("index.html.erb", "w") do |f|
           while (!(line = template.gets).nil?)
             line.gsub!("##PP##", indexpath)
-            line.gsub!("##PN##", name.underscore.humanize)
+            line.gsub!("##PN##", name.underscore.titleize)
             f.puts(line)
           end
         end
@@ -45,6 +46,8 @@ namespace :games do
           end
         end
       end
+      FileUtils.touch("installed")
+      Dir.chdir("..")
     end
   end
 end

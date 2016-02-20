@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :users
 
   namespace :games do
+
+    get "/another_test_game" => "another_test_game#index"
+
+    get "/another_test_game" => "another_test_game#index"
     
   end
   
