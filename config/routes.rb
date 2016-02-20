@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   namespace :games do
 
-    get "/pitpex" => "pitpex#index"
+    get "/another_test_game" => "another_test_game#index"
     
   end
   
