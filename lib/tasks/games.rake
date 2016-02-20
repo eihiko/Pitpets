@@ -4,6 +4,37 @@ require 'active_support/core_ext/string/inflections'
 desc 'Install all Pitpex games in the games folder'
 
 namespace :games do
+
+  task :update do
+    Dir.chdir "games"
+    games = Dir["*.pitpex"]
+    games.each do |g|
+      next unless File.exists? "#{g}/installed"
+      name = g.chomp(".pitpex")
+      gamedata = "../../public/gamedata/#{name.underscore}"
+      viewpath = "../../app/views/games/#{name.underscore}"
+      indexpath = "/gamedata/#{name.underscore}"
+      controllerpath = "../../app/controllers/games/#{name.underscore}_controller.rb"
+      Dir.chdir g
+      Dir.mkdir gamedata unless Dir.exists? gamedata
+      Dir.mkdir viewpath unless Dir.exists? viewpath
+      FileUtils.cp_r("Release/.", gamedata)
+      FileUtils.cp_r("TemplateData/.", gamedata)
+      File.open("index.template", "r") do |template|
+        File.open("index.html.erb", "w") do |f|
+          while (!(line = template.gets).nil?)
+            line.gsub!("##PP##", indexpath)
+            line.gsub!("##PN##", name.underscore.titleize)
+            f.puts(line)
+          end
+        end
+      end
+      FileUtils.cp("index.html.erb", viewpath)
+      FileUtils.touch("installed")
+      Dir.chdir("..")
+    end
+  end
+
   task :install do
 
     Dir.chdir "games"
