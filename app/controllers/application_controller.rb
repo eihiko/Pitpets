@@ -4,8 +4,20 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   before_action :require_login
+  before_action :add_https
+
+  protected
+
+  def add_https
+    puts request.original_url
+    unless request.original_url[/\Ahttps:\/\//] || request.original_url[/\Ahttp:\/\//]
+      puts "REDIRECTING TO HTTPS"
+      redirect_to "https://#{request.original_url}"
+    end
+  end
 
   private
+    
 
   def require_login
     if session[:user_id]
