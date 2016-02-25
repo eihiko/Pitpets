@@ -1,6 +1,7 @@
 class Api::UsersController < ApplicationController
 
   skip_before_action :require_login
+  skip_before_action :verify_authenticity_token
   
   def show
     user = User.find_by_guid(params[:id])
