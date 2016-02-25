@@ -1,4 +1,9 @@
 Rails.application.configure do
+  # Heroku's code snippit for debug-level logging
+  STDOUT.sync = true
+  logger = Logger.new(STDOUT)
+  logger.level = 0
+  Rails.logger = Rails.application.config.logger = logger
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -46,7 +51,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  # config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
