@@ -10,7 +10,7 @@ class Api::UsersController < ApplicationController
   def pay
     user = User.find_by_guid(params[:id])
     if user
-      user.dollaz += params[:amount].to_i
+      user.dollaz += params[:dollaz].to_i
       user.save!
       render nothing: true, status: :accepted
     else
