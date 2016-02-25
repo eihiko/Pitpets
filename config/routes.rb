@@ -16,14 +16,6 @@ Rails.application.routes.draw do
   namespace :games do
 
     get "/shake_the_block" => "shake_the_block#index"
-
-    get "/pitpextest" => "pitpextest#index"
-
-    get "/test_game" => "test_game#index"
-
-    get "/another_test_game" => "another_test_game#index"
-
-    get "/another_test_game" => "another_test_game#index"
     
   end
   
