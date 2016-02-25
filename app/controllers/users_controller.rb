@@ -17,12 +17,4 @@ class UsersController < ApplicationController
     end
   end
 
-  def pay
-    user = User.find(params[:id])
-    if user
-      user.dollaz += params[:dollaz]
-      user.save!
-    end
-  end
-
 end

@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
     render json: user.to_json(except: [:password_digest, :email])
   end
 
-  def earn
+  def pay
     user = User.find_by_guid(params[:id])
     if user
       user.dollaz += params[:amount].to_i
