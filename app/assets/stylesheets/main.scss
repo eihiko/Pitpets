@@ -1,6 +1,9 @@
 $c_background: #DDDDDD;
-$c_bar: #EEEEEE;
-$c_bar_border: #CCCCCC;
+$c_bar: #000000;
+$c_bar_text: #FFFFFF;
+$c_bar_border: #FF0000;
+$c_bar_anchor: #FFFFFF;
+$c_bar_anchor_hover: #FF0000;
 $c_alert: #FF0000;
 $c_notice: #00AA00;
 
@@ -11,26 +14,41 @@ body {
 }
 
 #top {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .bar {
-  height: 30px;
+  height: 50px;
   vertical-align: middle;
-  line-height: 30px;
+  line-height: 50px;
   padding-left: 0.5%;
   padding-right: 0.5%;
   background-color: $c_bar;
+  color: $c_bar_text;
   border-style: solid;
   border-color: $c_bar_border;
   border-width: 0px 0px 2px 0px;
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: $c_bar_anchor;
+  }
+  a:hover, a:visited:hover {
+    color: $c_bar_anchor_hover;
+  }
+  a:visited {
+    color: $c_bar_anchor;
+  }
+
 }
+
 
 #userbar {
   background-image: url("/img/pitpets_logo.png");
-  background-position: 0.5% 0%;
+  background-position: 0% 0%;
   background-repeat: no-repeat;
-  padding-left: 160px;
+  padding-left: 280px;
 }
 
 #alert {
