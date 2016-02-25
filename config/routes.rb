@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :users
 
   namespace :games do
+
+    get "/shake_the_block" => "shake_the_block#index"
     
   end
   
