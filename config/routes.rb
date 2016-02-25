@@ -11,8 +11,6 @@ Rails.application.routes.draw do
 
   resources :users
 
-  post "/users/:id/pay" => "users#pay"
-
   namespace :games do
 
     get "/shake_the_block" => "shake_the_block#index"
@@ -23,8 +21,7 @@ Rails.application.routes.draw do
 
     resources :users
 
-    get "/users/earn/:id/:amount" => "users#earn"
-
+    post "/users/:id/pay" => "users#pay"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
