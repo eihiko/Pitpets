@@ -1,0 +1,2 @@
+module NpcShopsHelper
+end

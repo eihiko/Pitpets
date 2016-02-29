@@ -11,6 +11,14 @@ Rails.application.routes.draw do
 
   resources :users
 
+  namespace :shops do
+    get "/new" => "npc_shops#new"
+
+    get "/:id" => "npc_shops#show"
+
+    post "/npc_shops" => "npc_shops#create"
+  end
+
   namespace :games do
 
     get "/tapeworm" => "tapeworm#index"
@@ -24,6 +32,8 @@ Rails.application.routes.draw do
     resources :users
 
     post "/users/:id/pay" => "users#pay"
+
+    post "/users/:id/buy" => "users#buy"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
