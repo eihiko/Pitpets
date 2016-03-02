@@ -1,0 +1,5 @@
+<h1><%= @item.name %></h1>
+<img src = "<%= @item.image_url %>">
+<% @item.item_type_effects.each do |effect| %>
+<p><%= effect.effect_type.name %></p>
+<% end %>
