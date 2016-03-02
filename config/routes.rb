@@ -14,8 +14,6 @@ Rails.application.routes.draw do
   namespace :games do
 
     get "/tapeworm" => "tapeworm#index"
-
-    get "/shake_the_block" => "shake_the_block#index"
     
   end
   
