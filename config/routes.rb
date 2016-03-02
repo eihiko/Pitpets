@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get "/items/:id" => "item_types#show"
 
+  get "/playeritems/:id" => "items#show"
+
   resources :users
 
   namespace :games do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301040821) do
+ActiveRecord::Schema.define(version: 20160302072340) do
 
   create_table "effect_types", force: :cascade do |t|
     t.string "name", null: false
@@ -28,15 +28,20 @@ ActiveRecord::Schema.define(version: 20160301040821) do
   end
 
   create_table "item_type_effects", force: :cascade do |t|
-    t.datetime "expires"
-    t.integer  "item_type_id"
-    t.integer  "effect_type_id"
+    t.integer "item_type_id"
+    t.integer "effect_type_id"
+    t.float   "modifier1"
+    t.float   "modifier2"
+    t.float   "modifier3"
+    t.time    "time_modifier"
+    t.string  "text_modifier"
   end
 
   create_table "item_types", force: :cascade do |t|
-    t.string  "name"
-    t.integer "durability"
-    t.string  "image_url"
+    t.string   "name"
+    t.integer  "durability"
+    t.string   "image_url"
+    t.datetime "expires"
   end
 
   create_table "items", force: :cascade do |t|
