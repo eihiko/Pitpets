@@ -1,4 +1,9 @@
-<h1><%= @random_pet.name %>
+<h1><%= @random_pet.name %></h1>
+<img src=<%= @random_pet.breed.image_url %>>
 <p>Breed: <%= @random_pet.breed.name %></p>
 <p>Health: <%= @random_pet.health %> / <%= @random_pet.max_health %></p>
-<p>S
+<p>Hunger: <%= @random_pet.hunger %> / 100</p>
+<p>Strength: <%= @random_pet.strength %></p>
+<p>Dexterity: <%= @random_pet.dexterity %></p>
+<p>Defense: <%= @random_pet.defense %></p>
+

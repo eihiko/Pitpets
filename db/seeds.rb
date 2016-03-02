@@ -6,11 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Breed.create(name: "Squarb", 
+squarb = Breed.create(name: "Squarb", 
              image_url: "/img/pets/squarb.png", 
              max_health: 100,
              strength: 10,
              dexterity: 5,
              defense: 15)
+
+Pet.create(name: "Barb", max_health: 100, health: 20, hunger: 26, strength: 10, dexterity: 5, defense: 15, breed_id: squarb.id) 
+	   
 
 

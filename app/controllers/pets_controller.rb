@@ -1,7 +1,7 @@
 class PetsController < ApplicationController
   
   def show
-    squarb = Breed.find_by_name("Squarb")
+    squarb = Breed.find(params[:id])
     @random_pet = Pet.new(name: "Barb", 
                           breed_id: squarb.id,
                           max_health: squarb.max_health,
