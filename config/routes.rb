@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get "/battles/:username" => "battles#index"
+
+  get "/battles/:battle_id" => "battles#show"
+
   post '/login_attempt' => "sessions#login_attempt"
 
   get '/logout' => "sessions#logout"
@@ -10,6 +15,10 @@ Rails.application.routes.draw do
   get '/settings' => "sessions#settings"
 
   get "/pets/:id" => "pets#show"
+
+  get "/items/:id" => "item_types#show"
+
+  get "/playeritems/:id" => "items#show"
 
   resources :users
 

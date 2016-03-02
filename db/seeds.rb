@@ -13,4 +13,26 @@ Breed.create(name: "Squarb",
              dexterity: 5,
              defense: 15)
 
+purple_hat = ItemType.create(name: "Purple HAT", durability: 5000, image_url: "https://sp.yimg.com/xj/th?id=OIP.Mbac296a6cbc1dcb40a15147ad500f7d5H0&pid=15.1&P=0&w=300&h=300")
+
+heal = EffectType.create(name: "Heal")
+burn = EffectType.create(name: "Burn")
+freeze = EffectType.create(name: "Freeze")
+poison = EffectType.create(name: "Poison")
+
+ItemTypeEffect.create(item_type_id: purple_hat.id, effect_type_id: heal.id, modifier1: 50, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+ItemTypeEffect.create(item_type_id: purple_hat.id, effect_type_id: burn.id, modifier1: 100, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+ItemTypeEffect.create(item_type_id: purple_hat.id, effect_type_id: freeze.id, modifier1: 500, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+
+item1 = Item.create(item_type_id: purple_hat.id, durability: 5, expires: nil)
+item2 = Item.create(item_type_id: purple_hat.id, durability: 4000, expires: nil)
+
+ItemEffect.create(item_id: item1.id, effect_type_id: heal.id, modifier1: 50, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+ItemEffect.create(item_id: item1.id, effect_type_id: burn.id, modifier1: 100, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+ItemEffect.create(item_id: item1.id, effect_type_id: freeze.id, modifier1: 500, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+ItemEffect.create(item_id: item1.id, effect_type_id: poison.id, modifier1: 2, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+
+ItemEffect.create(item_id: item2.id, effect_type_id: heal.id, modifier1: 50, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+ItemEffect.create(item_id: item2.id, effect_type_id: burn.id, modifier1: 100, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+ItemEffect.create(item_id: item2.id, effect_type_id: freeze.id, modifier1: 500, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 
