@@ -1,0 +1,4 @@
+<%= if @battle.nil? %>
+  <p>You are not currently in a battle with <%= @opponent.username %>. Challenge them? </p>
+  <%= link_to "Make them suffer!", controller: "battles", action: "challenge", id: @opponent.id %>
+<% end %>

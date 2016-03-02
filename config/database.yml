@@ -3,7 +3,7 @@ default: &default
   pool: 5
   timeout: 5000
 
-development:
+development: &development
   adapter: sqlite3
   pool: 5
   timeout: 5000
@@ -13,8 +13,8 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: pitpets_test
+  <<: *development
+  database: pitpets_test.sqlite3
 
 production:
   <<: *default

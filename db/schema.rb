@@ -11,22 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301023003) do
+ActiveRecord::Schema.define(version: 20160302222220) do
+
+  create_table "battles", force: :cascade do |t|
+    t.integer "challenger_id"
+    t.integer "opponent_id"
+    t.boolean "accepted"
+    t.boolean "started",       default: false
+    t.boolean "finished",      default: false
+    t.boolean "won"
+  end
+
+  add_index "battles", ["challenger_id"], name: "index_battles_on_challenger_id"
+  add_index "battles", ["opponent_id"], name: "index_battles_on_opponent_id"
 
   create_table "breeds", force: :cascade do |t|
     t.string  "name"
     t.string  "image_url"
     t.integer "max_health"
-    t.integer "strength"
-    t.integer "dexterity"
-    t.integer "defense"
-  end
-
-  create_table "pets", force: :cascade do |t|
-    t.string  "name"
-    t.integer "max_health"
-    t.integer "health"
-    t.integer "hunger"
     t.integer "strength"
     t.integer "dexterity"
     t.integer "defense"
@@ -69,6 +71,16 @@ ActiveRecord::Schema.define(version: 20160301023003) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "item_type_id"
+  end
+
+  create_table "pets", force: :cascade do |t|
+    t.string  "name"
+    t.integer "max_health"
+    t.integer "health"
+    t.integer "hunger"
+    t.integer "strength"
+    t.integer "dexterity"
+    t.integer "defense"
   end
 
   create_table "users", force: :cascade do |t|
