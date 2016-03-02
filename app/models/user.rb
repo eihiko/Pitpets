@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
-  
+  alias_attribute :pitpoints, :dollaz
+
   def self.try_login(username, password)
     user = User.find_by_username(username).try(:authenticate, password)
     return user || false
