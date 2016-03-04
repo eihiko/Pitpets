@@ -1,0 +1,10 @@
+<div id="new_shop">
+  <h1>Create Shop</h1>
+  <%= form_tag({controller: "npc_shops", action: "create"}, method: "post") do %>
+    <%= label_tag(:shop_name, "shop name:") %>
+    <%= text_field_tag(:shop_name) %>
+    <%= label_tag(:location, "location:") %>
+    <%= text_field_tag(:location) %>
+    <%= submit_tag("Create Shop") %>
+  <% end %>
+</div>

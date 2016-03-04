@@ -52,6 +52,29 @@ ActiveRecord::Schema.define(version: 20160302072340) do
     t.integer  "item_type_id"
   end
 
+  create_table "player_inventories", force: :cascade do |t|
+    t.integer  "pid"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shop_inventories", force: :cascade do |t|
+    t.integer  "sid"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string   "shop_name"
+    t.integer  "shopkeeper_id"
+    t.string   "location"
+    t.integer  "inventory_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "email"
@@ -60,6 +83,7 @@ ActiveRecord::Schema.define(version: 20160302072340) do
     t.datetime "updated_at"
     t.integer  "dollaz",          default: 0,                                      null: false
     t.string   "guid",            default: "00000000-0000-0000-0000-000000000000", null: false
+    t.integer  "inventory_id"
   end
 
 end
