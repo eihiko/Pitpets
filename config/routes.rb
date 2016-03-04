@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
   get '/settings' => "sessions#settings"
 
+  get "/items/:id" => "item_types#show"
+
+  get "/playeritems/:id" => "items#show"
+
   resources :users
 
   namespace :games do
