@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     inventory = PlayerInventory.new
     inventory.save
 
-    user = User.new(username: params[:username], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation], inventory_id: inventory.id)
+    user = User.new(username: params[:username], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
     user.guid = SecureRandom.uuid
     user.save
     if user.valid?
