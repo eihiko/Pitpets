@@ -15,13 +15,13 @@ Rails.application.routes.draw do
 
   resources :users
 
-  namespace :shops do
-    get "/new" => "npc_shops#new"
+  # npc shops
+  get "/shops/new" => "shops#new"
 
-    get "/:id" => "npc_shops#show"
+  get "/shops/:id" => "shops#show"
 
-    post "/npc_shops" => "npc_shops#create"
-  end
+  post "/shops/:id" => "shops#buy"
+  
 
   namespace :games do
 

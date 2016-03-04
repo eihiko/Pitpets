@@ -11,11 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302072340) do
+ActiveRecord::Schema.define(version: 20160304073203) do
 
   create_table "effect_types", force: :cascade do |t|
     t.string "name", null: false
   end
+
+  create_table "inventories", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.integer  "owner_type_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "inventories", ["owner_type_id"], name: "index_inventories_on_owner_type_id"
 
   create_table "item_effects", force: :cascade do |t|
     t.float   "modifier1"
@@ -50,30 +59,30 @@ ActiveRecord::Schema.define(version: 20160302072340) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "item_type_id"
+    t.integer  "inventory_id"
   end
 
-  create_table "player_inventories", force: :cascade do |t|
-    t.integer  "pid"
-    t.integer  "item_id"
+  create_table "owner_types", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "shop_inventories", force: :cascade do |t|
-    t.integer  "sid"
-    t.integer  "item_id"
+  create_table "shopkeepers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "shops", force: :cascade do |t|
-    t.string   "shop_name"
+    t.string   "name"
     t.integer  "shopkeeper_id"
-    t.string   "location"
-    t.integer  "inventory_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "shops", ["shopkeeper_id"], name: "index_shops_on_shopkeeper_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -83,7 +92,6 @@ ActiveRecord::Schema.define(version: 20160302072340) do
     t.datetime "updated_at"
     t.integer  "dollaz",          default: 0,                                      null: false
     t.string   "guid",            default: "00000000-0000-0000-0000-000000000000", null: false
-    t.integer  "inventory_id"
   end
 
 end

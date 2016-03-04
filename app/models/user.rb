@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
     return user || false
   end
 
+  def self.inventory
+    Inventories.find("owner_id = " + self.id + "and owner_type = " + OwnerTypes.find("name = player"))
+  end
 end

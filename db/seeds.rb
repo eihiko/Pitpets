@@ -29,3 +29,11 @@ ItemEffect.create(item_id: item2.id, effect_type_id: heal.id, modifier1: 50, mod
 ItemEffect.create(item_id: item2.id, effect_type_id: burn.id, modifier1: 100, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 ItemEffect.create(item_id: item2.id, effect_type_id: freeze.id, modifier1: 500, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 
+# Seed NPC_Shop and Player inventory types
+OwnerType.create(name: "player")
+OwnerType.create(name: "npc_shop")
+
+# Seed a sample shop and shopkeeper
+sk = Shopkeeper.create(first_name: "Lucky", last_name: "McStumpy")
+shop = Shop.create(name: "Lucky's Used Weapon Emporium", shopkeeper_id: sk.id)
+Item.create(item_type_id: purple_hat.id, durability: 90, inventory_id: shop.inventory.id )
