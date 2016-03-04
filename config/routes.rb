@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   namespace :games do
 
+    get "/hungry_dog" => "hungry_dog#index"
+
     get "/tapeworm" => "tapeworm#index"
 
     get "/" => "games#index"
