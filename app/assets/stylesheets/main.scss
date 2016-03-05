@@ -48,7 +48,12 @@ body {
   background-image: url("/img/pitpets_logo.png");
   background-position: 0% 0%;
   background-repeat: no-repeat;
-  padding-left: 280px;
+}
+
+#logo {
+  display: inline-block;
+  width: 280px;
+  margin-right: 50px;
 }
 
 #alert {

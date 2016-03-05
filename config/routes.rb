@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
     get "/tapeworm" => "tapeworm#index"
 
-    get "/shake_the_block" => "shake_the_block#index"
+    get "/" => "games#index"
     
   end
   

@@ -11,6 +11,8 @@
 
 <div id="top">
   <div id="userbar" class="bar">
+    <a href="/"><div id="logo"> </div></a>
+    <%= render "/layouts/navbar" %>
     <div style="float: right;">
       <% if session[:user_id] %>
         <%= render "/layouts/userbar" %>

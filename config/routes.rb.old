@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   namespace :games do
 
-    get "/shake_the_block" => "shake_the_block#index"
+    get "/" => "games#index"
     
   end
   
