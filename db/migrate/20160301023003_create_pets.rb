@@ -1,6 +1,7 @@
 class CreatePets < ActiveRecord::Migration
   def change
     create_table :pets do |t|
+      t.references :breed
       t.string :name
       t.integer :max_health
       t.integer :health
@@ -9,6 +10,5 @@ class CreatePets < ActiveRecord::Migration
       t.integer :dexterity
       t.integer :defense
     end
-    add_foreign_key :pets, :breeds
   end
 end

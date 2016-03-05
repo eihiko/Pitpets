@@ -13,7 +13,5 @@ squarb = Breed.create(name: "Squarb",
              dexterity: 5,
              defense: 15)
 
-Pet.create(name: "Barb", max_health: 100, health: 20, hunger: 26, strength: 10, dexterity: 5, defense: 15, breed_id: squarb.id) 
-	   
-
+Pet.create(name: "Barb", max_health: 100, health: 20, hunger: 26, strength: 10, dexterity: 5, defense: 15, breed_id: squarb.id)
 

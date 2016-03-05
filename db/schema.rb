@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160302222136) do
   end
 
   create_table "pets", force: :cascade do |t|
+    t.integer "breed_id"
     t.string  "name"
     t.integer "max_health"
     t.integer "health"
