@@ -3,6 +3,7 @@
 <p>Breed: <%= @pet.breed.name %></p>
 <p>Health: <%= @pet.health %> / <%= @pet.max_health %></p>
 <p>Hunger: <%= @pet.hunger %> / 100</p>
+<p><%= @pet.breed.name %>s get hungry <%= @pet.breed.hunger_rate %> time(s) per hour. Don't forget to feed your pet!</p>
 <p>Strength: <%= @pet.strength %></p>
 <p>Dexterity: <%= @pet.dexterity %></p>
 <p>Defense: <%= @pet.defense %></p>

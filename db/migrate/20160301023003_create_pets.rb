@@ -5,10 +5,11 @@ class CreatePets < ActiveRecord::Migration
       t.string :name
       t.integer :max_health
       t.integer :health
-      t.integer :hunger
+      t.integer :hunger_base
       t.integer :strength
       t.integer :dexterity
       t.integer :defense
+      t.datetime :last_fed
     end
   end
 end

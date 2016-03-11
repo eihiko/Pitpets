@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get "/pets/:id" => "pets#show"
 
+  get "/breeds/:id" => "breeds#show"
+
   resources :users
 
   namespace :games do

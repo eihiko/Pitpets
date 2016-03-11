@@ -20,20 +20,22 @@ ActiveRecord::Schema.define(version: 20160302222136) do
     t.integer "strength"
     t.integer "dexterity"
     t.integer "defense"
+    t.float   "hunger_rate"
   end
 
   create_table "pet_ownerships", force: :cascade do |t|
   end
 
   create_table "pets", force: :cascade do |t|
-    t.integer "breed_id"
-    t.string  "name"
-    t.integer "max_health"
-    t.integer "health"
-    t.integer "hunger"
-    t.integer "strength"
-    t.integer "dexterity"
-    t.integer "defense"
+    t.integer  "breed_id"
+    t.string   "name"
+    t.integer  "max_health"
+    t.integer  "health"
+    t.integer  "hunger_base"
+    t.integer  "strength"
+    t.integer  "dexterity"
+    t.integer  "defense"
+    t.datetime "last_fed"
   end
 
   create_table "users", force: :cascade do |t|
