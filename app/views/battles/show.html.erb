@@ -1,0 +1,5 @@
+<% if @battle.nil? %>
+  <p> No battle! </p>
+<% else %>
+  <p>Battle between <%= @battle.contenders[0].user.username %> and <%= @battle.contenders[1].user.username %></p>
+<% end %>

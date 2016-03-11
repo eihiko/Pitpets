@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  get "/battles/:username" => "battles#index"
+  get "/battles/with/:username" => "battles#index"
 
-  get "/battles/:battle_id" => "battles#show"
+  get "/battles/challenge/:username" => "battles#challenge"
+
+  get "/battles/:id" => "battles#show"
 
   post '/login_attempt' => "sessions#login_attempt"
 

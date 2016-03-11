@@ -11,19 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302222220) do
+ActiveRecord::Schema.define(version: 20160310220854) do
 
   create_table "battles", force: :cascade do |t|
-    t.integer "challenger_id"
-    t.integer "opponent_id"
     t.boolean "accepted"
-    t.boolean "started",       default: false
-    t.boolean "finished",      default: false
+    t.boolean "started",  default: false
+    t.boolean "finished", default: false
     t.boolean "won"
   end
-
-  add_index "battles", ["challenger_id"], name: "index_battles_on_challenger_id"
-  add_index "battles", ["opponent_id"], name: "index_battles_on_opponent_id"
 
   create_table "breeds", force: :cascade do |t|
     t.string  "name"
@@ -32,6 +27,12 @@ ActiveRecord::Schema.define(version: 20160302222220) do
     t.integer "strength"
     t.integer "dexterity"
     t.integer "defense"
+  end
+
+  create_table "contenders", force: :cascade do |t|
+    t.integer "battle_id"
+    t.integer "user_id"
+    t.boolean "challenger", default: false
   end
 
   create_table "effect_types", force: :cascade do |t|

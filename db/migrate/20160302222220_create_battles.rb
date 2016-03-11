@@ -1,8 +1,6 @@
 class CreateBattles < ActiveRecord::Migration
   def change
     create_table :battles do |t|
-      t.references :challenger, table: :users, index: true, foreign_key: true
-      t.references :opponent, table: :users, index: true, foreign_key: true
       t.boolean :accepted, default: nil
       t.boolean :started, default: false
       t.boolean :finished, default: false
