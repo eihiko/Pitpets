@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302072340) do
+ActiveRecord::Schema.define(version: 20160314234525) do
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "user_a_id"
+    t.integer "user_b_id"
+  end
 
   create_table "effect_types", force: :cascade do |t|
     t.string "name", null: false
@@ -51,6 +56,16 @@ ActiveRecord::Schema.define(version: 20160302072340) do
     t.datetime "updated_at"
     t.integer  "item_type_id"
   end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "conversation_id"
+    t.integer "user_id"
+    t.text    "body"
+    t.boolean "seen",            default: false
+  end
+
+  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id"
 
   create_table "player_inventories", force: :cascade do |t|
     t.integer  "pid"

@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_secure_password
   alias_attribute :pitpoints, :dollaz
 
+  has_many :conversations, foreign_key: :a_id
+
   def self.try_login(username, password)
     user = User.find_by_username(username).try(:authenticate, password)
     return user || false
