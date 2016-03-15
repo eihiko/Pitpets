@@ -1,4 +1,11 @@
-<% if @battle.nil? %>
-  <p>You are not currently in a battle with <%= @opponent.username %>. Challenge them? </p>
-  <%= link_to "Make them suffer!", controller: "battles", action: "challenge", id: @opponent.id %>
+<% @battles.each do |b| %>
+  <p>
+  <%= link_to "Battle between #{b.challenger.username} and #{b.opponent.username}:", 
+  controller: "battles", action: "show", id: b.id %>
+    <%=BattleHelper.status(b)%>
+  </p>
+<% end %>
+
+<% if @battles.count < 1 %>
+  <p>No battles!</p>
 <% end %>

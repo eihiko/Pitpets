@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  get "/battles/with/:username" => "battles#index"
+  get "/battles" => "battles#index"
+
+  get "/battles/:id/accept" => "battles#accept"
+
+  get "/battles/:id/decline" => "battles#decline"
+
+  get "/battles/with/:username" => "battles#with"
 
   get "/battles/challenge/:username" => "battles#challenge"
 
