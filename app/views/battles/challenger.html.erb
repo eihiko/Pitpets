@@ -5,7 +5,7 @@
 <% elsif !@battle.accepted %>
   <p><%=@battle.opponent.username%> has declined your call to battle! What disgusting cowardice!</p>
 <% elsif !@battle.finished %>
-  <% render "battle", me: @current_user, them: @battle.opponent %>
+  <%= render "battle", me: @current_user, them: @battle.opponent %>
 <% elsif @battle.won %>
   <p> You defeated <%=@battle.opponent.username%> in glorious combat! Huzzah! </p>
 <% else %>
