@@ -11,7 +11,19 @@ Breed.create(name: "Squarb",
              max_health: 100,
              strength: 10,
              dexterity: 5,
-             defense: 15)
+             defense: 15,
+             hunger_rate: 4
+            )
+
+Pet.create(name: "Barb", 
+		max_health: 100, 
+		health: 20, 
+		hunger_base: 26, 
+		strength: 10, 
+		dexterity: 5, 
+		defense: 15, 
+		breed_id: squarb.id,
+		last_fed: DateTime.now)
 
 purple_hat = ItemType.create(name: "Purple HAT", durability: 5000, image_url: "https://sp.yimg.com/xj/th?id=OIP.Mbac296a6cbc1dcb40a15147ad500f7d5H0&pid=15.1&P=0&w=300&h=300")
 

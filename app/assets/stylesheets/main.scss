@@ -4,10 +4,13 @@ $c_bar_text: #FFFFFF;
 $c_bar_border: #FF0000;
 $c_bar_anchor: #FFFFFF;
 $c_bar_anchor_hover: #FF0000;
-$c_alert: #FF0000;
-$c_notice: #00AA00;
+$c_alert: #FF9900;
+$c_notice: #00AA99;
+
 
 body {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  background-image: image-url("tile_space_inverted.png");
   background-color: $c_background;
   padding: 0px;
   margin: 0px;
@@ -43,6 +46,9 @@ body {
 
 }
 
+#nav {
+  font-family: "Syncopate";
+}
 
 #userbar {
   background-image: url("/img/pitpets_logo.png");

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   namespace :games do
 
+    get "/tapeworm" => "tapeworm#index"
+
     get "/" => "games#index"
     
   end

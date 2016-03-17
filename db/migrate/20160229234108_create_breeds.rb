@@ -7,6 +7,7 @@ class CreateBreeds < ActiveRecord::Migration
       t.integer :strength
       t.integer :dexterity
       t.integer :defense
+      t.float :hunger_rate
     end
   end
 end
