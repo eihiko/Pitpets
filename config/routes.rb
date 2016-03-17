@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+
+  get "/battles" => "battles#index"
+
+  get "/battles/:id/accept" => "battles#accept"
+
+  get "/battles/:id/decline" => "battles#decline"
+
+  get "/battles/with/:username" => "battles#with"
+
+  get "/battles/challenge/:username" => "battles#challenge"
+
+  get "/battles/:id" => "battles#show"
+
   post '/login_attempt' => "sessions#login_attempt"
 
   get '/logout' => "sessions#logout"
@@ -8,6 +21,10 @@ Rails.application.routes.draw do
   get '/profile' => "sessions#profile"
 
   get '/settings' => "sessions#settings"
+
+  get "/pets/:id" => "pets#show"
+
+  get "/breeds/:id" => "breeds#show"
 
   get "/items/:id" => "item_types#show"
 

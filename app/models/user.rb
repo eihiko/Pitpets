@@ -6,7 +6,16 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
   alias_attribute :pitpoints, :dollaz
+
   after_create :create_inventory
+
+  has_many :contenders
+  has_many :battles, through: :contenders
+  has_many :pets, foreign_key: :owner_id
+
+  def battles_with user_id
+    battles.joins(:contenders).where(contenders: {user_id: user_id})
+  end
 
   def self.try_login(username, password)
     user = User.find_by_username(username).try(:authenticate, password)
