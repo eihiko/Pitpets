@@ -3,6 +3,7 @@ capybara-*.html
 .rspec
 /log
 /tmp
+*.sqlite*
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /public/system
@@ -36,3 +37,5 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+
+.DS_Store

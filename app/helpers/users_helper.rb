@@ -1,4 +1,4 @@
-module UserHelper
+module UsersHelper
   # include ActionView::Helpers::NumberHelper
 
   def self.format_pitpoints pitpoints

@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+
+  get "/battles" => "battles#index"
+
+  get "/battles/:id/accept" => "battles#accept"
+
+  get "/battles/:id/decline" => "battles#decline"
+
+  get "/battles/with/:username" => "battles#with"
+
+  get "/battles/challenge/:username" => "battles#challenge"
+
+  get "/battles/:id" => "battles#show"
+
   post '/login_attempt' => "sessions#login_attempt"
 
   get '/logout' => "sessions#logout"
@@ -19,13 +32,13 @@ Rails.application.routes.draw do
 
   resources :users
 
-  namespace :shops do
-    get "/new" => "npc_shops#new"
+  # npc shops
+  get "/shops/new" => "shops#new"
 
-    get "/:id" => "npc_shops#show"
+  get "/shops/:id" => "shops#show"
 
-    post "/npc_shops" => "npc_shops#create"
-  end
+  post "/shops/:id" => "shops#buy"
+  
 
   namespace :games do
 
