@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310220854) do
+ActiveRecord::Schema.define(version: 20160317032527) do
 
   create_table "battles", force: :cascade do |t|
     t.boolean "accepted"
@@ -75,9 +75,6 @@ ActiveRecord::Schema.define(version: 20160310220854) do
     t.integer  "item_type_id"
   end
 
-  create_table "pet_ownerships", force: :cascade do |t|
-  end
-
   create_table "pets", force: :cascade do |t|
     t.integer  "breed_id"
     t.string   "name"
@@ -88,6 +85,7 @@ ActiveRecord::Schema.define(version: 20160310220854) do
     t.integer  "dexterity"
     t.integer  "defense"
     t.datetime "last_fed"
+    t.integer  "owner_id"
   end
 
   create_table "player_inventories", force: :cascade do |t|

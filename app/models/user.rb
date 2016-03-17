@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :contenders
   has_many :battles, through: :contenders
+  has_many :pets, foreign_key: :owner_id
 
   def battles_with user_id
     battles.joins(:contenders).where(contenders: {user_id: user_id})

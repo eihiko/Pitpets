@@ -2,7 +2,7 @@
   <p>
   <%= link_to "Battle between #{b.challenger.username} and #{b.opponent.username}:", 
   controller: "battles", action: "show", id: b.id %>
-    <%=BattleHelper.status(b)%>
+    <%=BattlesHelper.status(b)%>
   </p>
 <% end %>
 

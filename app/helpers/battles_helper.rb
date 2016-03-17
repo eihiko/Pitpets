@@ -1,4 +1,4 @@
-module BattleHelper
+module BattlesHelper
 
   def self.status battle
 

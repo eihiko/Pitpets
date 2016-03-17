@@ -1,0 +1,12 @@
+<% pet = contender.pets.first %>
+<div id=<%= who %>>
+  <h1><%= pet.name %></h1>
+  <%= PetsHelper.image pet %>
+  <div class="stats">
+    <p>Health: <%= "#{pet.health}/#{pet.max_health}" %></p> 
+    <p>Strength: <%= pet.strength %></p>
+    <p>Dexterity: <%= pet.dexterity %></p>
+    <p>Defense: <%= pet.defense %></p>
+    <p>Hunger: <%= pet.hunger %>/100</p>
+  </div>
+</div>
