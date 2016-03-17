@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310220854) do
-
-  create_table "battles", force: :cascade do |t|
-    t.boolean "accepted"
-    t.boolean "started",  default: false
-    t.boolean "finished", default: false
-    t.boolean "won"
-  end
+ActiveRecord::Schema.define(version: 20160302222136) do
 
   create_table "breeds", force: :cascade do |t|
     t.string  "name"
@@ -27,12 +20,7 @@ ActiveRecord::Schema.define(version: 20160310220854) do
     t.integer "strength"
     t.integer "dexterity"
     t.integer "defense"
-  end
-
-  create_table "contenders", force: :cascade do |t|
-    t.integer "battle_id"
-    t.integer "user_id"
-    t.boolean "challenger", default: false
+    t.float   "hunger_rate"
   end
 
   create_table "effect_types", force: :cascade do |t|
@@ -78,13 +66,15 @@ ActiveRecord::Schema.define(version: 20160310220854) do
   end
 
   create_table "pets", force: :cascade do |t|
-    t.string  "name"
-    t.integer "max_health"
-    t.integer "health"
-    t.integer "hunger"
-    t.integer "strength"
-    t.integer "dexterity"
-    t.integer "defense"
+    t.integer  "breed_id"
+    t.string   "name"
+    t.integer  "max_health"
+    t.integer  "health"
+    t.integer  "hunger_base"
+    t.integer  "strength"
+    t.integer  "dexterity"
+    t.integer  "defense"
+    t.datetime "last_fed"
   end
 
   create_table "player_inventories", force: :cascade do |t|
