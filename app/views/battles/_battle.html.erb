@@ -1,3 +1,7 @@
 <% my_pet = me.pets.first %>
-<%= render "contender", contender: me, who: "me" %>
-<%= render "contender", contender: them, who: "them" %>
+<div id="battleview">
+  <%= render "contender", contender: me, who: "me" %>
+  <%= render "contender", contender: them, who: "them" %>
+
+  <%= render "battle_items", contender: me, who: "me" %>
+</div>
