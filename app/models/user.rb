@@ -30,6 +30,14 @@ class User < ActiveRecord::Base
     Inventory.where(owner_id: self.id, owner_type: OwnerType.find_by(name: "player")).first
   end
 
+  def charge(cost)
+	if (self.pitpoints < cost)
+		return false
+	end
+	self.pitpoints -= cost
+	self.save! 
+  end
+
   def purchase (item_id, cost)
     self.inventory.add_item item_id
     self.dollaz -= cost

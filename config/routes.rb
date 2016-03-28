@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   get "/playeritems/:id" => "items#show"
 
+  get "/inventories/:id" => "inventories#show"
+
   resources :users
 
   # npc shops

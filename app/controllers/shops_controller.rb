@@ -16,9 +16,13 @@ class ShopsController < ApplicationController
 
 	def buy
 		user = User.find(params[:user])
-		user.purchase params[:item], 20
-
-		redirect_to "/shops/" + params[:id], notice: "Item purchased!"
+		if(user.charge 20)
+			item = Item.find(params[:item])
+			new_item = item.new_from_item(item)
+			new_item.save!
+			user.inventory.add(new_item.id)
+			redirect_to "/shops/" + params[:id], notice: "Item purchased!"
+		end
 	end
 
 end
