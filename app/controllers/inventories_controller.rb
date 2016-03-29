@@ -5,10 +5,15 @@ class InventoriesController < ApplicationController
   end
 
   def feed
-	item = Item.find(params[:item])
-	ItemEffect.food(item.id, params[:pet_id])
+	item = Item.find(params[:item_id])
+	ItemEffect.food(item.id, params[:effect_id], params[:pet_id])
 	item.destroy
 	redirect_to controller: :inventories, action: :show
+  end
+
+  def user
+	@inventory = @current_user.inventory
+	render "show"
   end
 
 end

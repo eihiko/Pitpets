@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
   post "/inventories/:id" => "inventories#feed"
 
+  get "/inventory" => "inventories#user"
+
   resources :users
 
   # npc shops
