@@ -36,6 +36,34 @@ Rails.application.routes.draw do
 
   get "/inventory" => "inventories#user"
 
+  namespace :admin_tools do
+
+    get "/" => "admin_tools#index"
+
+    get "/create_pet" => "admin_tools#create_pet"
+
+    get "/change_pet" => "admin_tools#change_pet"
+
+    get "/create_breed" => "admin_tools#create_breed"
+
+    get "/change_breed" => "admin_tools#change_breed"
+
+    get "/create_item_type" => "admin_tools#create_item_type"
+
+    get "/change_item_type" => "admin_tools#change_item_type"
+
+    get "/create_item" => "admin_tools#create_item"
+
+    get "/change_item" => "admin_tools#change_item"
+
+    get "/create_shop" => "admin_tools#create_shop"
+
+    get "/change_shop" => "admin_tools#change_shop"
+
+    get "/change_user_stuff" => "admin_tools#change_user_stuff"
+
+  end
+
   resources :users
 
   # npc shops
