@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :contenders
   has_many :battles, through: :contenders
   has_many :pets, foreign_key: :owner_id
+  belongs_to :inventories
 
   def battles_with user_id
     battles.joins(:contenders).where(contenders: {user_id: user_id})
@@ -30,9 +31,12 @@ class User < ActiveRecord::Base
     Inventory.where(owner_id: self.id, owner_type: OwnerType.find_by(name: "player")).first
   end
 
-  def purchase (item_id, cost)
-    self.inventory.add_item item_id
-    self.dollaz -= cost
+  def charge(cost)
+	if (self.pitpoints < cost)
+		return false
+	end
+	self.pitpoints -= cost
+	self.save! 
   end
 
 end

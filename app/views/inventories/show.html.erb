@@ -1,0 +1,20 @@
+<h1>Welcome to an inventory!</h1>
+
+<table style="border-spacing: 30px">
+	<% @inventory.items.each do |i| %>
+	<tr>
+		<td><%= i.type.name %></td>
+		<td><img src="<%=i.type.image_url%>"></td>
+		<td>
+		<% if ((effect = i.get_effect("Food")) != nil) %>
+			<%= form_tag({controller: "inventories", action: "feed", id: @inventory.id}, method: "post") do %>
+				<%= hidden_field_tag("item_id", i.id) %>
+				<%= hidden_field_tag("effect_id", effect.id) %>
+				<%= select_tag "pet_id", options_from_collection_for_select(@current_user.pets, "id", "name") %>			
+				<%= submit_tag("Feed pet!") %>
+			<% end %>
+		<% end %>
+		</td>
+	</tr>
+	<% end %>
+</table>

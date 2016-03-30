@@ -5,10 +5,9 @@ class Inventory < ActiveRecord::Base
   	Array.new(Item.where(inventory_id: self.id))
   end
 
-  def add_item (item_id)
-  	item = Item.find(item_id).dup
+  def add (item_id)
+	item = Item.find(item_id)
   	item.inventory_id = self.id
   	item.save
   end
-
 end
