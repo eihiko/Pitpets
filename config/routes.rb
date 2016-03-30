@@ -54,6 +54,8 @@ Rails.application.routes.draw do
 
     get "/tapeworm" => "tapeworm#index"
 
+    get "/injured_birb" => "injured_birb#index"
+
     get "/" => "games#index"
     
   end
