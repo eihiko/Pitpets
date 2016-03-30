@@ -1,4 +1,5 @@
 <% my_pet = me.pets.first %>
+<%= render "selected_items" %>
 <div id="battleview">
   <%= render "contender", contender: me, who: "me" %>
   <%= render "contender", contender: them, who: "them" %>

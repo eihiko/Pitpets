@@ -1,5 +1,5 @@
 <% pet = contender.pets.first %>
-<div id=<%= who %>>
+<div id="<%= who %>" class="contender">
   <h1><%= "#{pet.name} the #{pet.breed.name}" %></h1>
   <%= PetsHelper.image pet %>
   <div class="stats">

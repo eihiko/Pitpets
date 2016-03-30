@@ -1,7 +1,7 @@
 module ItemsHelper
 
-  def self.image item
-    helpers.image_tag item.item_type.image_url
+  def self.display item
+    helpers.image_tag item.item_type.image_url, class: "battle-item", id: item.id, draggable: false
   end
 
   def self.helpers

@@ -26,6 +26,18 @@ class BattlesController < ApplicationController
     redirect_to controller: "battles", action: "show", id: b.id
   end
 
+  def turn
+    @battle = @current_user.battles.find(params[:id])
+    @battle.contenders.each do |contender|
+      if(contender.user == @current_user)
+        @me = contender.user
+      else
+        @them = contender.user
+      end
+    end
+    redirect_to controller: :battles, action: :show, id: params[:id]
+  end
+
   def show
     @battle = @current_user.battles.find(params[:id])
     unless @battle

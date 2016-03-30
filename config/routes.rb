@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get "/battles/:id" => "battles#show"
 
+  post "/battles/:id/turn" => "battles#turn"
+
   post '/login_attempt' => "sessions#login_attempt"
 
   get '/logout' => "sessions#logout"
