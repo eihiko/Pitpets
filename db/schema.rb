@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317032527) do
+ActiveRecord::Schema.define(version: 20160330015226) do
+
+  create_table "battle_turns", force: :cascade do |t|
+    t.integer "battle_id"
+    t.integer "contender_id"
+    t.integer "offensive_item_id"
+    t.integer "defensive_item_id"
+    t.boolean "completed",         default: false
+  end
 
   create_table "battles", force: :cascade do |t|
     t.boolean "accepted"
