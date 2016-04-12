@@ -4,6 +4,10 @@ class ShopsController < ApplicationController
 		@shop = Shop.find(params[:id])
 	end
 
+	def show_by_name
+		@shop = Shop.find_by_name(params[:name])
+	end
+
 	def new
 	end
 
@@ -18,7 +22,13 @@ class ShopsController < ApplicationController
 		user = User.find(params[:user])
 		user.purchase params[:item], 20
 
-		redirect_to "/shops/" + params[:id], notice: "Item purchased!"
+		redirect_to "/shops/#{shop.id}", notice: "Item purchased!"
+	end
+
+	def shop
+		@shop = Shop.find(params[:id]) unless params[:id].blank?
+		@shop = Shop.find_by_name(params[:name]) unless params[:name].blank?
+		return @shop
 	end
 
 end
