@@ -15,4 +15,8 @@ class Pet < ActiveRecord::Base
 		self.save!
 	end
 
+  def dead?
+    return health <= 0
+  end
+
 end

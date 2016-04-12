@@ -3,13 +3,19 @@ class Item < ActiveRecord::Base
 	belongs_to :item_type
 	has_many :item_effects, dependent: :destroy
 
+  def apply pet
+    item_effects.each { |effect| effect.apply pet }
+  end
+
 	def type
 		ItemType.find(self.item_type_id)
 	end
 
-	def self.new_from_item_type(type_id)
+	def self.create_from_item_type(type_id, options=nil)
 		type = ItemType.find(type_id)
-		new_item = Item.new(item_type_id: type.id, durability: type.durability, expires: type.expires)	
+    params = {item_type_id: type.id, durability: type.durability, expires: type.expires}
+    params.merge!(options) unless options.nil?
+		new_item = Item.new(params)
 		new_item.save!
 		type.item_type_effects.each do |effect|
 			ItemEffect.new(item_id: new_item.id, effect_type_id: effect.effect_type_id, modifier1: effect.modifier1, 				modifier2: effect.modifier1, modifier3: effect.modifier3, time_modifier: effect.time_modifier, 				text_modifier: effect.text_modifier).save!

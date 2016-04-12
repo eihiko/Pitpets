@@ -1,8 +1,8 @@
 <% @battles.each do |b| %>
   <p>
-  <%= link_to "Battle between #{b.challenger.username} and #{b.opponent.username}:", 
+  <%= link_to "Battle between #{b.challenger.user.username} and #{b.opponent.user.username}:", 
   controller: "battles", action: "show", id: b.id %>
-    <%=BattlesHelper.status(b)%>
+    <%=BattlesHelper.status(b, @current_user)%>
   </p>
 <% end %>
 

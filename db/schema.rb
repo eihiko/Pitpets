@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412021443) do
+ActiveRecord::Schema.define(version: 20160412053303) do
 
   create_table "battle_turns", force: :cascade do |t|
     t.integer  "battle_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160412021443) do
     t.integer "battle_id"
     t.integer "user_id"
     t.boolean "challenger", default: false
+    t.integer "pet_id"
   end
 
   create_table "effect_types", force: :cascade do |t|

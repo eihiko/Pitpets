@@ -71,10 +71,10 @@ ItemTypeEffect.create(item_type_id: purple_hat.id, effect_type_id: freeze.id, mo
 item1 = Item.create(item_type_id: purple_hat.id, durability: 5, expires: nil, inventory_id: shop.inventory.id)
 item2 = Item.create(item_type_id: purple_hat.id, durability: 4000, expires: nil, inventory_id: shop.inventory.id)
 
-Item.create(item_type_id: purple_hat.id, durability: 5, expires: nil, inventory_id: ei.inventory.id)
-Item.create(item_type_id: purple_hat.id, durability: 5, expires: nil, inventory_id: ei.inventory.id)
-Item.create(item_type_id: purple_hat.id, durability: 5, expires: nil, inventory_id: yo.inventory.id)
-Item.create(item_type_id: purple_hat.id, durability: 5, expires: nil, inventory_id: yo.inventory.id)
+Item.create_from_item_type(purple_hat.id, {inventory_id: ei.inventory.id})
+Item.create_from_item_type(purple_hat.id, {inventory_id: ei.inventory.id})
+Item.create_from_item_type(purple_hat.id, {inventory_id: yo.inventory.id})
+Item.create_from_item_type(purple_hat.id, {inventory_id: yo.inventory.id})
 
 ItemEffect.create(item_id: item1.id, effect_type_id: heal.id, modifier1: 50, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 ItemEffect.create(item_id: item1.id, effect_type_id: burn.id, modifier1: 100, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
