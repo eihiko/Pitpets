@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+      post :reply
+    end
+  end
+
+  resources :messages, only: [:new, :create]
+
   get "/battles" => "battles#index"
 
   get "/battles/:id/accept" => "battles#accept"
@@ -18,7 +26,7 @@ Rails.application.routes.draw do
 
   get '/logout' => "sessions#logout"
 
-  get '/' => "sessions#home"
+  get '/' => "sessions#home", as: :root
 
   get '/profile' => "sessions#profile"
 

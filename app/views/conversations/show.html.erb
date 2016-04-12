@@ -1,0 +1,18 @@
+<h1>Conversation</h1>
+<h2><%= @conversation.subject %></h2>
+
+<div>
+  <% @conversation.receipts_for(@current_user).each do |receipt| %>
+    <% message = receipt.message %>
+    [<%= message.created_at.strftime("%-d %B %Y, %H:%M:%S")%>]
+    <%= message.sender.name %>: 
+    <%= message.body %>
+    <br />
+  <% end %>
+</div>
+<%= form_tag reply_conversation_path(@conversation), method: :post do %>
+  <div>
+    <%= text_area_tag "body", "", cols: 50, rows: 10 %>
+    <%= submit_tag "send" %>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<h1>New Conversation</h1>
+
+<%= form_tag messages_path, method: :post do %>
+  <div>
+    <%= label_tag "message[subject]", "subject" %>
+    <%= text_field_tag "message[subject]", "", required: true %>
+  </div>
+
+  <div>
+    <%= label_tag "message[body]", "message" %>
+    <%= text_area_tag "message[body]", "", rows: 10, cols: 50, required: true %> 
+  </div>
+
+  <div>
+    <%= label_tag "recipients", "recipients" %>
+    <%= select_tag "recipients", recipients_options, multiple: true, class: "chosen", "data-placeholder" => "choose recipients..." %>
+  </div>
+
+  <%= submit_tag "send" %>
+
+<% end %>

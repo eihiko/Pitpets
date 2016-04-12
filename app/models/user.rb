@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  acts_as_messageable
+
   before_save { self.email = email.downcase }
   validates :username, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -13,6 +15,14 @@ class User < ActiveRecord::Base
   has_many :battles, through: :contenders
   has_many :pets, foreign_key: :owner_id
   belongs_to :inventories
+
+  def name
+    return username
+  end
+
+  def mailboxer_email object
+    return nil
+  end
 
   def battles_with user_id
     battles.joins(:contenders).where(contenders: {user_id: user_id})
