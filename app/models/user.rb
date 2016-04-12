@@ -49,4 +49,10 @@ class User < ActiveRecord::Base
 	self.save! 
   end
 
+  def self.dump
+    User.all.each do |u|
+      puts "#{u.username}, #{u.email}, #{u.password_digest}, #{u.pitpoints}, #{u.guid}, #{u.created_at}"
+    end;""
+  end
+
 end
