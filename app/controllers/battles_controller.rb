@@ -35,6 +35,19 @@ class BattlesController < ApplicationController
         @them = contender.user
       end
     end
+    turn = @battle.battle_turns.where(completed: false).first;
+    if turn.nil?
+      @battle.battle_turns.create!(
+        contender_id: @me.id,
+        offensive_item_id: params[:offensive],
+        defensive_item_id: params[:defensive],
+        completed: false
+      )
+    elsif turn.contender.user.id == @me.id
+      flash.alert = "You already did your turn bro!"
+    else
+    end
+
     redirect_to controller: :battles, action: :show, id: params[:id]
   end
 

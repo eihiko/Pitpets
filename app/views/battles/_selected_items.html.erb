@@ -1,8 +1,6 @@
 <%= form_tag({controller: "/battles", action: "turn", id: params[:id]}, method: "post") do %>
   <%= hidden_field_tag(:offensive, nil) %>
-  <%= hidden_field_tag(:offensive_target, nil) %>
   <%= hidden_field_tag(:defensive, nil) %>
-  <%= hidden_field_tag(:defensive_target, nil) %>
   <%= submit_tag("Attack!", id: "attack", disabled: true) %>
 <% end %>
 <%= submit_tag("Reset", id: "reset", disabled: true, onclick: "reset_battle_items(event)") %>

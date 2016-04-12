@@ -25,8 +25,12 @@ $c_them: #FF9900;
   border-color: #000000;
 }
 
-.active {
-  border-color: #FFFF00;
+.defensive {
+  border-color: $c_me;
+}
+
+.offensive {
+  border-color: $c_them;
 }
 
 #me {

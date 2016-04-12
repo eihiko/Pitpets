@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def create_inventory
-    Inventory.create(owner_id: self.id, owner_type: OwnerType.find_by(name: "player"))
+    Inventory.create!(owner_id: self.id, owner_type: OwnerType.find_by(name: "player"))
   end
 
   def inventory
