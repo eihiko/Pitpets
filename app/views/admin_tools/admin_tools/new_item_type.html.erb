@@ -1,0 +1,13 @@
+<h1>Create an item type! Doit!</h1>
+
+  <%= form_tag({controller: "admin_tools", action: "create_item_type"}, method: "post", multipart: true) do %>
+  <p><%= label_tag(:item_type_name, "Item type name:") %>
+     <%= text_field_tag(:item_type_name) %> </p>
+  <p><%= label_tag(:durability, "Durability:") %>
+     <%= text_field_tag(:durability) %> </p>
+  <p><%= label_tag(:expires, "Expires: (SAVES AS NULL CURRENTLY)") %>
+     <%= datetime_field_tag(:expires) %> </p>
+  <p><%= label_tag(:item_type_image, "Item type image: (SAVES AS NULL CURRENTLY)") %>
+     <%= file_field_tag(:item_type_image) %> </p>
+  <p><%= submit_tag("Create item type!") %> </p>
+  <% end %>

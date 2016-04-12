@@ -40,23 +40,33 @@ Rails.application.routes.draw do
 
     get "/" => "admin_tools#index"
 
-    get "/create_pet" => "admin_tools#create_pet"
+    post "/create_pet" => "admin_tools#create_pet"
+
+    get "/new_pet" => "admin_tools#new_pet"
 
     get "/change_pet" => "admin_tools#change_pet"
 
-    get "/create_breed" => "admin_tools#create_breed"
+    post "/create_breed" => "admin_tools#create_breed"
+
+    get "/new_breed" => "admin_tools#new_breed"
 
     get "/change_breed" => "admin_tools#change_breed"
 
-    get "/create_item_type" => "admin_tools#create_item_type"
+    post "/create_item_type" => "admin_tools#create_item_type"
+
+    get "/new_item_type" => "admin_tools#new_item_type"
 
     get "/change_item_type" => "admin_tools#change_item_type"
 
-    get "/create_item" => "admin_tools#create_item"
+    post "/create_item" => "admin_tools#create_item"
+
+    get "/new_item" => "admin_tools#new_item"
 
     get "/change_item" => "admin_tools#change_item"
 
-    get "/create_shop" => "admin_tools#create_shop"
+    post "/create_shop" => "admin_tools#create_shop"
+
+    get "/new_shop" => "admin_tools#new_shop"
 
     get "/change_shop" => "admin_tools#change_shop"
 

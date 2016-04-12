@@ -1,0 +1,19 @@
+<h1>Create a breeeeeeeeeeeeeeed! Doit!</h1>
+
+  <%= form_tag({controller: "admin_tools", action: "create_breed"}, method: "post", multipart: true) do %>
+  <p><%= label_tag(:breed_name, "Breed name:") %>
+     <%= text_field_tag(:breed_name) %> </p>
+  <p><%= label_tag(:max_health, "Max health:") %>
+     <%= text_field_tag(:max_health) %> </p>
+  <p><%= label_tag(:strength, "Strength:") %>
+     <%= text_field_tag(:strength) %> </p>
+  <p><%= label_tag(:dexterity, "Dexterity:") %>
+     <%= text_field_tag(:dexterity) %> </p>
+  <p><%= label_tag(:defense, "Defense:") %>
+     <%= text_field_tag(:defense) %> </p>
+  <p><%= label_tag(:hunger_rate, "Hunger rate:") %>
+     <%= text_field_tag(:hunger_rate) %> </p>
+  <p><%= label_tag(:breed_image, "Breed image(SAVES AS NULL CURRENTLY):") %>
+     <%= file_field_tag(:breed_image) %> </p>
+  <p><%= submit_tag("Create breed!") %> </p>
+  <% end %>
