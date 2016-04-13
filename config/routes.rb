@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+      post :reply
+    end
+  end
+
+  resources :messages, only: [:new, :create]
+
   get "/battles" => "battles#index"
 
   get "/battles/:id/accept" => "battles#accept"
@@ -12,11 +20,13 @@ Rails.application.routes.draw do
 
   get "/battles/:id" => "battles#show"
 
+  post "/battles/:id/turn" => "battles#turn"
+
   post '/login_attempt' => "sessions#login_attempt"
 
   get '/logout' => "sessions#logout"
 
-  get '/' => "sessions#home"
+  get '/' => "sessions#home", as: :root
 
   get '/profile' => "sessions#profile"
 
@@ -29,6 +39,12 @@ Rails.application.routes.draw do
   get "/items/:id" => "item_types#show"
 
   get "/playeritems/:id" => "items#show"
+
+  get "/inventories/:id" => "inventories#show"
+
+  post "/inventories/:id" => "inventories#feed"
+
+  get "/inventory" => "inventories#user"
 
   resources :users
 
@@ -60,6 +76,8 @@ Rails.application.routes.draw do
     get "/hungry_dog" => "hungry_dog#index"
 
     get "/tapeworm" => "tapeworm#index"
+
+    get "/injured_birb" => "injured_birb#index"
 
     get "/" => "games#index"
     

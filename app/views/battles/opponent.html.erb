@@ -1,18 +1,20 @@
+<% them = @battle.challenger.user %>
+<% their_name = them.username %>
 <% if @battle.nil? %>
   <p> No battle! </p>
 <% elsif @battle.accepted.nil? %>
-  <p><%=@battle.challenger.username%> has challenged you to a battle. Will you fight?</p>
+  <p><%= their_name %> has challenged you to a battle. Will you fight?</p>
 <%= link_to "I will destroy them!", controller: "battles", action: "accept", id: @battle.id %>
 <br />
 <%= link_to "They are a waste of my time. Dismiss them at once!", controller: "battles",
   action: "decline", id: @battle.id %>
 
 <% elsif !@battle.accepted %>
-    <p>You have declined <%=@battle.challenger.username%>'s call to battle! What disgusting cowardice!</p>
+    <p>You have declined <%= their_name %>'s call to battle! What disgusting cowardice!</p>
 <% elsif !@battle.finished %>
-  <% render "battle", me: @current_user, them: @battle.challenger %>
-<% elsif @battle.won %>
-  <p> You defeated <%=@battle.challenger.username%> in glorious combat! Huzzah! </p>
+  <%= render "battle", me: @current_user, them: them %>
+<% elsif !@battle.won %>
+  <p> You defeated <%= their_name %> in glorious combat! Huzzah! </p>
 <% else %>
-  <p> You were defeated by <%=@battle.challenger.username%>. Shame to you and your kin.</p>
+  <p> You were defeated by <%= their_name %>. Shame to you and your kin.</p>
 <% end %>

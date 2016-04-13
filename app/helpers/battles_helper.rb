@@ -1,6 +1,6 @@
 module BattlesHelper
 
-  def self.status battle
+  def self.status battle, user
 
     if battle.accepted.nil?
       return "challenge pending"
@@ -14,11 +14,20 @@ module BattlesHelper
       return "ongoing"
     end
 
-    unless battle.won
-      return "defeated"
+    if battle.won
+      if user == battle.challenger.user
+        return "victorious"
+      else
+        return "defeated"
+      end
+    else
+      if user == battle.challenger.user
+        return "defeated"
+      else
+        return "victorious"
+      end
     end
-
-    return "victorious"
+    return "I don't even know"
     
   end
 

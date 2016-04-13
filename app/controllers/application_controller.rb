@@ -38,5 +38,9 @@ class ApplicationController < ActionController::Base
       return true
     end
   end
+
+  def redirect_back
+    redirect_to request.referer || root_path
+  end
   
 end

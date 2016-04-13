@@ -1,4 +1,5 @@
 Rails.application.configure do
+  config.log_level = :debug
   # Heroku's code snippit for debug-level logging
   STDOUT.sync = true
   logger = Logger.new(STDOUT)
