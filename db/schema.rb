@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317032527) do
+ActiveRecord::Schema.define(version: 20160413013456) do
 
   create_table "battles", force: :cascade do |t|
     t.boolean "accepted"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 20160317032527) do
 
   create_table "effect_types", force: :cascade do |t|
     t.string "name", null: false
+  end
+
+  create_table "food_kitchen_visits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "inventories", force: :cascade do |t|

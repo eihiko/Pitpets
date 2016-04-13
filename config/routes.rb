@@ -51,6 +51,8 @@ Rails.application.routes.draw do
 
       get "/world_alpha/food_kitchen" => "world_alpha#food_kitchen"
 
+      get "/world_alpha/food_kitchen_inside" => "world_alpha#food_kitchen_inside"
+
   end
 
   namespace :games do

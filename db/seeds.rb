@@ -52,6 +52,11 @@ ItemEffect.create(item_id: item2.id, effect_type_id: burn.id, modifier1: 100, mo
 ItemEffect.create(item_id: item2.id, effect_type_id: freeze.id, modifier1: 500, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 ItemEffect.create(item_id: item2.id, effect_type_id: food.id, modifier1: 50, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 
+#Tupperware of Leftovers seed
+tupperware_of_leftovers = ItemType.create(name: "Tupperware of Leftovers", durability: 1, image_url: "/resources/items/foods/Tupperware of Leftovers.png")
+ItemTypeEffect.create(item_type_id: tupperware_of_leftovers.id, effect_type_id: food.id, modifier1: 40, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+ItemTypeEffect.create(item_type_id: tupperware_of_leftovers.id, effect_type_id: poison.id, modifier1: 3, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+
 # Seed NPC_Shop and Player inventory types
 OwnerType.create(name: "player")
 OwnerType.create(name: "npc_shop")
