@@ -43,13 +43,6 @@ class User < ActiveRecord::Base
     Pet.create(
       name: self.username,
       breed_id: human.id,
-      max_health: human.max_health,
-      health: human.max_health,
-      strength: human.strength,
-      dexterity: human.dexterity,
-      defense: human.defense,
-      hunger_base: 0,
-      last_fed: DateTime.now,
       owner_id: self.id
     )
   end

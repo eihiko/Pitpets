@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412175418) do
+ActiveRecord::Schema.define(version: 20160414015413) do
 
   create_table "battle_turns", force: :cascade do |t|
     t.integer  "battle_id"
@@ -166,6 +166,7 @@ ActiveRecord::Schema.define(version: 20160412175418) do
     t.integer  "defense"
     t.datetime "last_fed"
     t.integer  "owner_id"
+    t.float    "hunger_rate"
   end
 
   create_table "shopkeepers", force: :cascade do |t|

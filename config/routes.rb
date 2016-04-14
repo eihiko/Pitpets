@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get "/battles" => "battles#index"
 
+  get "battles/npc" => "battles#npc"
+
   get "/battles/:id/accept" => "battles#accept"
 
   get "/battles/:id/decline" => "battles#decline"

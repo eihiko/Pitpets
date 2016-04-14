@@ -35,4 +35,9 @@ class ItemEffect < ActiveRecord::Base
     pet.health -= modifier1
   end
 
+  def poison pet
+    puts "Poisoning #{pet.name} for #{modifier1}"
+    pet.health -= modifier1
+  end
+
 end

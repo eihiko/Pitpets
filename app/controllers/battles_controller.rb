@@ -14,13 +14,29 @@ class BattlesController < ApplicationController
     end
   end
 
+  def npc
+    tallgrass = User.find_by_username("tallgrass")
+    p = Pet.create(
+      name: "Tick",
+      breed_id: Breed.find_by_name("IncrediblyLargeTickWithLymeDisease").id,
+      owner_id: tallgrass.id,
+    )
+    b = Battle.create!
+    Contender.create!(battle_id: b.id, user_id: tallgrass.id, pet_id: p.id, challenger: true)
+    Contender.create(battle_id: b.id, user_id: @current_user.id, pet_id: @current_user.pets.first.id)
+    b.accepted = true
+    b.started = true
+    b.save!
+    redirect_to controller: "battles", action: "show", id: b.id
+  end
+
   def challenge
     @challenger = @current_user
     @opponent = User.find(params[:id])
     unless @opponent && @challenger
       render nothing: true, status: :not_found
     end
-    b= Battle.create!;
+    b= Battle.create!
     Contender.create!(battle_id: b.id, user_id: @challenger.id, 
                       pet_id: @challenger.pets.first.id, challenger: true)
     Contender.create!(battle_id: b.id, user_id: @opponent.id, 
@@ -39,6 +55,7 @@ class BattlesController < ApplicationController
         @their_pet = contender.pet
       end
     end
+    npc_turn(@battle) if @them.username == "tallgrass"
     turn = @battle.battle_turns.where(completed: false).first;
     if turn.nil?
       @battle.battle_turns.create!(
@@ -123,7 +140,22 @@ class BattlesController < ApplicationController
     redirect_to controller: "battles", action: "index"
   end
 
-
+  private
+  
+  def npc_turn battle
+    tallgrass = nil
+    battle.contenders.each do |c|
+      tallgrass = c if c.user.username == "tallgrass"
+    end
+    offensive = tallgrass.user.inventory.items.first
+    defensive = tallgrass.user.inventory.items.last
+    battle.battle_turns.create!(
+      contender_id: tallgrass.id,
+      offensive_item_id: offensive.id,
+      defensive_item_id: defensive.id,
+      completed: false
+    )
+  end
 
 end
 

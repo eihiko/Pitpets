@@ -16,6 +16,16 @@ Breed.create(
   hunger_rate: 0
 )
 
+Breed.create(
+  name: "IncrediblyLargeTickWithLymeDisease",
+  image_url: "/img/pets/incrediblyLargeTickWithLymeDisease.png",
+  max_health: 10,
+  strength: 1,
+  dexterity: 5,
+  defense: 3,
+  hunger_rate: 8
+)
+
 squarb = Breed.create(
   name: "Squarb", 
   image_url: "/img/pets/squarb.png", 
@@ -26,6 +36,15 @@ squarb = Breed.create(
   hunger_rate: 4
 )
 
+heal = EffectType.create(name: "Heal")
+burn = EffectType.create(name: "Burn")
+freeze = EffectType.create(name: "Freeze")
+poison = EffectType.create(name: "Poison")
+food = EffectType.create(name: "Food")
+
+diseased_bite = ItemType.create(name: "DiseasedBite", durability: 100, image_url: "/img/items/diseased_bite.png")
+ItemTypeEffect.create(item_type_id: diseased_bite.id, effect_type_id: poison.id, modifier1: 3)
+
 # Seed NPC_Shop and Player inventory types
 OwnerType.create(name: "player")
 OwnerType.create(name: "npc_shop")
@@ -35,44 +54,43 @@ sk = Shopkeeper.create(first_name: "Lucky", last_name: "McStumpy")
 shop = Shop.create(name: "Lucky's Used Weapon Emporium", shopkeeper_id: sk.id)
 
 #Test user accounts
-ei = User.create(username: "eihiko",
-            email: "oeihiko@gmail.com",
-            password: "Hackme00",
-            password_confirmation: "Hackme00")
-yo = User.create(username: "youko",
-            email: "oyouko@gmail.com",
-            password: "Hackme00",
-            password_confirmation: "Hackme00")
+ei = User.create(
+  username: "eihiko",
+  email: "oeihiko@gmail.com",
+  password: "Hackme00",
+  password_confirmation: "Hackme00"
+)
+yo = User.create(
+  username: "youko",
+  email: "oyouko@gmail.com",
+  password: "Hackme00",
+  password_confirmation: "Hackme00"
+)
 
-Pet.create(name: "Barb", 
-		max_health: 100, 
-		health: 100, 
-		hunger_base: 0, 
-		strength: 10, 
-		dexterity: 5, 
-		defense: 15, 
-		breed_id: squarb.id,
-		last_fed: DateTime.now,
-		owner_id: ei.id)
+tallgrass = User.create(
+  username: "tallgrass",
+  email: "tallgrass@pitpets.net",
+  password: "Hackme00",
+  password_confirmation: "Hackme00"
+)
+tallgrass.pets.first.destroy
 
-Pet.create(name: "Henri", 
-		max_health: 100, 
-		health: 100, 
-		hunger_base: 0, 
-		strength: 5, 
-		dexterity: 5, 
-		defense: 20, 
-		breed_id: squarb.id,
-		last_fed: DateTime.now,
-		owner_id: yo.id)
+Pet.create(
+  name: "Barb", 
+	breed_id: squarb.id,
+	owner_id: ei.id
+)
+
+Pet.create(
+  name: "Henri", 
+	breed_id: squarb.id,
+	owner_id: yo.id
+)
+
+Item.create_from_item_type(diseased_bite.id, {inventory_id: tallgrass.inventory.id})
+Item.create_from_item_type(diseased_bite.id, {inventory_id: tallgrass.inventory.id})
 
 purple_hat = ItemType.create(name: "Purple HAT", durability: 5000, image_url: "https://sp.yimg.com/xj/th?id=OIP.Mbac296a6cbc1dcb40a15147ad500f7d5H0&pid=15.1&P=0&w=300&h=300")
-
-heal = EffectType.create(name: "Heal")
-burn = EffectType.create(name: "Burn")
-freeze = EffectType.create(name: "Freeze")
-poison = EffectType.create(name: "Poison")
-food = EffectType.create(name: "Food")
 
 ItemTypeEffect.create(item_type_id: purple_hat.id, effect_type_id: heal.id, modifier1: 50, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 ItemTypeEffect.create(item_type_id: purple_hat.id, effect_type_id: burn.id, modifier1: 100, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
