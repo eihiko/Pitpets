@@ -6,6 +6,25 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Breed.create(
+  name: "Human",
+  image_url: "/img/pets/human.png",
+  max_health: 50,
+  strength: 5,
+  dexterity: 15,
+  defense: 5,
+  hunger_rate: 0
+)
+
+squarb = Breed.create(
+  name: "Squarb", 
+  image_url: "/img/pets/squarb.png", 
+  max_health: 100,
+  strength: 10,
+  dexterity: 5,
+  defense: 15,
+  hunger_rate: 4
+)
 
 # Seed NPC_Shop and Player inventory types
 OwnerType.create(name: "player")
@@ -24,15 +43,6 @@ yo = User.create(username: "youko",
             email: "oyouko@gmail.com",
             password: "Hackme00",
             password_confirmation: "Hackme00")
-
-squarb = Breed.create(name: "Squarb", 
-             image_url: "/img/pets/squarb.png", 
-             max_health: 100,
-             strength: 10,
-             dexterity: 5,
-             defense: 15,
-             hunger_rate: 4
-            )
 
 Pet.create(name: "Barb", 
 		max_health: 100, 

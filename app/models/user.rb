@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   alias_attribute :pitpoints, :dollaz
 
   after_create :create_inventory
+  after_create :create_human
 
   has_many :contenders
   has_many :battles, through: :contenders
@@ -35,6 +36,22 @@ class User < ActiveRecord::Base
 
   def create_inventory
     Inventory.create!(owner_id: self.id, owner_type: OwnerType.find_by(name: "player"))
+  end
+
+  def create_human
+    human = Breed.find_by_name("Human")
+    Pet.create(
+      name: self.username,
+      breed_id: human.id,
+      max_health: human.max_health,
+      health: human.max_health,
+      strength: human.strength,
+      dexterity: human.dexterity,
+      defense: human.defense,
+      hunger_base: 0,
+      last_fed: DateTime.now,
+      owner_id: self.id
+    )
   end
 
   def inventory
