@@ -87,9 +87,17 @@ ItemEffect.create(item_id: item2.id, effect_type_id: burn.id, modifier1: 100, mo
 ItemEffect.create(item_id: item2.id, effect_type_id: freeze.id, modifier1: 500, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 
 #Tupperware of Leftovers seed
-tupperware_of_leftovers = ItemType.create(name: "Tupperware of Leftovers", durability: 1, image_url: "/resources/items/foods/Tupperware of Leftovers.png")
-ItemTypeEffect.create(item_type_id: tupperware_of_leftovers.id, effect_type_id: food.id, modifier1: 40, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
-ItemTypeEffect.create(item_type_id: tupperware_of_leftovers.id, effect_type_id: poison.id, modifier1: 3, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+tupperware_of_leftovers = ItemType.create(name: "Tupperware of Leftovers", durability: 1, image_url: "/img/items/foods/tupperware_of_leftovers.png")
+ItemTypeEffect.create(item_type_id: tupperware_of_leftovers.id, effect_type_id: food.id, modifier1: 25, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+ItemTypeEffect.create(item_type_id: tupperware_of_leftovers.id, effect_type_id: poison.id, modifier1: 5, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+
+#Larry's Lunch seed
+larrys_lunch = ItemType.create(name: "Larry's Lunch", durability: 1, image_url: "/img/items/foods/larrys_lunch.png")
+ItemTypeEffect.create(item_type_id: larrys_lunch.id, effect_type_id: food.id, modifier1: 15, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+
+#Tommy's Lunch seed
+tommys_lunch = ItemType.create(name: "Tommy's Lunch", durability: 1, image_url: "/img/items/foods/tommys_lunch.png")
+ItemTypeEffect.create(item_type_id: tommys_lunch.id, effect_type_id: food.id, modifier1: 8, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 
 # Seed NPC_Shop and Player inventory types
 OwnerType.create(name: "player")
