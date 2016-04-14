@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413013456) do
+ActiveRecord::Schema.define(version: 20160414012316) do
 
   create_table "battle_turns", force: :cascade do |t|
     t.integer  "battle_id"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160413013456) do
     t.integer  "durability"
     t.string   "image_url"
     t.datetime "expires"
+    t.string   "description"
   end
 
   create_table "items", force: :cascade do |t|

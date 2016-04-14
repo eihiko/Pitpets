@@ -26,6 +26,8 @@ class ShopsController < ApplicationController
 			new_item.save!
 			user.inventory.add(new_item.id)
 			redirect_to "/shops/#{shop.id}", notice: "Item purchased!"
+		else
+			redirect_to "/shops/#{shop.id}", alert: "You do not have enough money!"
 		end
 	end
 
