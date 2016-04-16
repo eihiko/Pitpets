@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414012316) do
+ActiveRecord::Schema.define(version: 20160416190310) do
 
   create_table "battle_turns", force: :cascade do |t|
     t.integer  "battle_id"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20160414012316) do
     t.datetime "updated_at"
     t.integer  "item_type_id"
     t.integer  "inventory_id"
+    t.integer  "cost"
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|

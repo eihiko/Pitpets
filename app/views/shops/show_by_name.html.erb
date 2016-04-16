@@ -5,6 +5,7 @@
 	<tr>
 		<td><%= t.type.name %></td>
 		<td><img src="<%=t.type.image_url%>"></td>
+		<td><%= UsersHelper.format_pitpoints(t.cost) %></td>
 		<td>
 			<%= button_to "Buy", 
 			{:controller => "shops",

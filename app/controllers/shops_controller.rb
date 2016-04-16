@@ -20,8 +20,8 @@ class ShopsController < ApplicationController
 
 	def buy
 		user = User.find(params[:user])
-		if(user.charge 20)
-			item = Item.find(params[:item])
+		item = Item.find(params[:item])
+		if(user.charge item.cost)
 			new_item = Item.new_from_item(item.id)
 			new_item.save!
 			user.inventory.add(new_item.id)

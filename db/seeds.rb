@@ -92,5 +92,5 @@ band_aid = ItemType.create(name: "Band Aid", durability: 1, image_url: "/img/ite
 ItemTypeEffect.create(item_type_id: band_aid.id, effect_type_id: heal.id, modifier1: 30, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 
 
-shop_purple_hat = Item.create_from_item_type(purple_hat.id, {inventory_id: shop.inventory.id})
-shop_band_aid = Item.create_from_item_type(band_aid.id, {inventory_id: shop.inventory.id})
+shop_purple_hat = Item.create_from_item_type(purple_hat.id, {inventory_id: shop.inventory.id, cost: 100000})
+shop_band_aid = Item.create_from_item_type(band_aid.id, {inventory_id: shop.inventory.id, cost: 150})
