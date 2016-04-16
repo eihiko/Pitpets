@@ -60,6 +60,8 @@ Rails.application.routes.draw do
 
   namespace :games do
 
+    get "/space_shooter" => "space_shooter#index"
+
     get "/hungry_dog" => "hungry_dog#index"
 
     get "/tapeworm" => "tapeworm#index"
