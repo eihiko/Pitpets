@@ -48,6 +48,12 @@ Rails.application.routes.draw do
 
   get "/inventory" => "inventories#user"
 
+  get 'friends/find'
+
+  get 'friends/review'
+
+  get 'friends/list'
+
   resources :users
 
   # npc shops
