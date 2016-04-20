@@ -1,2 +1,12 @@
-<h1>Friends#find</h1>
-<p>Find me in app/views/friends/find.html.erb</p>
+<h1>Find you some friends, you should!</h1>
+
+<h2>Here's some friends you can add!</h2>
+<ul><% @users.each do |u| %>
+	<li><%= u.username %>   <%= button_to "Send Request", 
+			{:controller => "friends",
+			 :action => "send_request",
+			 :current_user => @current_user,
+			 :target_user => u},
+			 :method=>:post %></li>
+<% end %>
+</ul>

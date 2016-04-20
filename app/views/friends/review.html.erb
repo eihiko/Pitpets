@@ -1,2 +1,7 @@
-<h1>Friends#review</h1>
-<p>Find me in app/views/friends/review.html.erb</p>
+<h1>Friend Requests</h1>
+
+<ul>
+<% @requests.each do |r| %>
+	<li><%= r.get_from_user.username %></li>
+<% end %>
+</ul>

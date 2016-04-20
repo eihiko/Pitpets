@@ -50,6 +50,8 @@ Rails.application.routes.draw do
 
   get 'friends/find'
 
+  post 'friends/send_request' => 'friends#send_request'
+
   get 'friends/review'
 
   get 'friends/list'

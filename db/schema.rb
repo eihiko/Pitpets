@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414015413) do
+ActiveRecord::Schema.define(version: 20160419033335) do
 
   create_table "battle_turns", force: :cascade do |t|
     t.integer  "battle_id"
@@ -49,6 +49,20 @@ ActiveRecord::Schema.define(version: 20160414015413) do
 
   create_table "effect_types", force: :cascade do |t|
     t.string "name", null: false
+  end
+
+  create_table "friend_requests", force: :cascade do |t|
+    t.integer  "to_user"
+    t.integer  "from_user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.integer  "user_1"
+    t.integer  "user_2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "inventories", force: :cascade do |t|
