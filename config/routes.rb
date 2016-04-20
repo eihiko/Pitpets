@@ -55,8 +55,23 @@ Rails.application.routes.draw do
 
   get "/shops/:id" => "shops#show"
 
+  get "/shops/shop_named/:name" => "shops#show_by_name"
+
+  post "/shops/shop_named/:name" => "shops#buy"
+
   post "/shops/:id" => "shops#buy"
-  
+
+  namespace :worlds do
+
+      get "/" => "worlds#index"
+
+      get "/world_alpha" => "world_alpha#index"
+
+      get "/world_alpha/food_kitchen" => "world_alpha#food_kitchen"
+
+      get "/world_alpha/food_kitchen_inside" => "world_alpha#food_kitchen_inside"
+
+  end
 
   namespace :games do
 

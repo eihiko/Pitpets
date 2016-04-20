@@ -4,6 +4,10 @@ class ShopsController < ApplicationController
 		@shop = Shop.find(params[:id])
 	end
 
+	def show_by_name
+		@shop = Shop.find_by_name(params[:name])
+	end
+
 	def new
 	end
 
@@ -16,13 +20,21 @@ class ShopsController < ApplicationController
 
 	def buy
 		user = User.find(params[:user])
-		if(user.charge 20)
-			item = Item.find(params[:item])
+		item = Item.find(params[:item])
+		if(user.charge item.cost)
 			new_item = Item.new_from_item(item.id)
 			new_item.save!
 			user.inventory.add(new_item.id)
-			redirect_to "/shops/" + params[:id], notice: "Item purchased!"
+			redirect_to "/shops/#{shop.id}", notice: "Item purchased!"
+		else
+			redirect_to "/shops/#{shop.id}", alert: "You do not have enough money!"
 		end
+	end
+
+	def shop
+		@shop = Shop.find(params[:id]) unless params[:id].blank?
+		@shop = Shop.find_by_name(params[:name]) unless params[:name].blank?
+		return @shop
 	end
 
 end

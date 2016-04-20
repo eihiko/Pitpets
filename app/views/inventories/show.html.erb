@@ -1,11 +1,10 @@
-<h1>Welcome to an inventory!</h1>
+<h1>Inventory!</h1>
 
 <table style="border-spacing: 30px">
 	<% @inventory.items.each do |i| %>
 	<tr>
 		<td><%= i.type.name %></td>
-		<td><img src="<%=i.type.image_url%>"></td>
-		<td>
+		<td><%= link_to image_tag(i.type.image_url), controller: "items", action: "show", id: i.id %>
 		<% if ((effect = i.get_effect("Food")) != nil) %>
 			<%= form_tag({controller: "inventories", action: "feed", id: @inventory.id}, method: "post") do %>
 				<%= hidden_field_tag("item_id", i.id) %>

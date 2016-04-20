@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414015413) do
+ActiveRecord::Schema.define(version: 20160416190310) do
 
   create_table "battle_turns", force: :cascade do |t|
     t.integer  "battle_id"
@@ -51,6 +51,12 @@ ActiveRecord::Schema.define(version: 20160414015413) do
     t.string "name", null: false
   end
 
+  create_table "food_kitchen_visits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "inventories", force: :cascade do |t|
     t.integer  "owner_id"
     t.integer  "owner_type_id"
@@ -85,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160414015413) do
     t.integer  "durability"
     t.string   "image_url"
     t.datetime "expires"
+    t.string   "description"
   end
 
   create_table "items", force: :cascade do |t|
@@ -94,6 +101,7 @@ ActiveRecord::Schema.define(version: 20160414015413) do
     t.datetime "updated_at"
     t.integer  "item_type_id"
     t.integer  "inventory_id"
+    t.integer  "cost"
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|

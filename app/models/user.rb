@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :contenders
   has_many :battles, through: :contenders
   has_many :pets, foreign_key: :owner_id
+  has_many :food_kitchen_visits
   belongs_to :inventories
 
   def name
