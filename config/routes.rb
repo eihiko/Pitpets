@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   get "/inventory" => "inventories#user"
 
   get 'friends/find'
+  get 'friends/search'
 
   post 'friends/send_request' => 'friends#send_request'
 

@@ -1,6 +1,30 @@
 class FriendsController < ApplicationController
+  
   def find
-  	@users = User.all
+  	_friends = @current_user.friends
+	_requests = FriendRequest.where(from_user: @current_user)
+	_users = []
+  	if params[:search]
+  		_field = params[:search]
+  		_users = User.where('username like ?', "%" + _field + "%").to_a
+  	else 
+  		_users = User.all.to_a
+  	end	
+
+	@users = eliminate_friends_and_requests _users, _friends, _requests
+
+  end
+
+  def eliminate_friends_and_requests (users, friends, requests)
+  	friends.each do |f|
+  		users.delete_if {|u| u == f}
+  	end
+
+  	requests.each do |r|
+  		users.delete_if {|u| u.id == r.to_user}
+  	end
+
+	users
   end
 
   def send_request
@@ -33,19 +57,7 @@ class FriendsController < ApplicationController
   end
 
   def list
-  	@friends = []
-
-  	# Get all friends where current user is user 1
-  	temp_friends = Friend.where(user_1: @current_user).all
-  	temp_friends.each do |t|
-  		@friends << User.find(t.user_2)
-	end
-
-	# Get all friends where current user is user 2
-	temp_friends = Friend.where(user_2: @current_user).all
-	temp_friends.each do |t|
-  		@friends << User.find(t.user_1)
-	end
-
+  	@friends = @current_user.friends
   end
+
 end
