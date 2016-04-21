@@ -39,9 +39,7 @@ class FriendsController < ApplicationController
   	else
 	  	FriendRequest.create(to_user: target_user, from_user:current_user)
 	  	redirect_to "/friends/find", notice: "Request Sent!"
-  	end
-
-  	
+  	end  	
   end
 
   def review
