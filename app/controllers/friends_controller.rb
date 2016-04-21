@@ -16,6 +16,22 @@ class FriendsController < ApplicationController
   	@requests = FriendRequest.where(to_user: @current_user)
   end
 
+  def accept
+  	request = FriendRequest.find(params[:request])
+
+  	Friend.create(user_1: request.to_user, user_2: request.from_user)
+  	request.destroy
+
+  	redirect_to :back, notice: "Friend Added!"
+  end
+
+  def reject
+  	request = FriendRequest.find(params[:request])
+  	request.destroy
+
+  	redirect_to :back, notice: "Friendship Denied! *gasp*"
+  end
+
   def list
   end
 end

@@ -53,6 +53,8 @@ Rails.application.routes.draw do
   post 'friends/send_request' => 'friends#send_request'
 
   get 'friends/review'
+  post 'friends/accept' => 'friends#accept'
+  post 'friends/reject' => 'friends#reject'
 
   get 'friends/list'
 
