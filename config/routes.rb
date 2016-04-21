@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'trading/requests'
+
+  get 'trading/send_request'
+
+  get 'trading/accept'
+
+  get 'trading/reject'
+
   resources :conversations, only: [:index, :show, :destroy] do
     member do
       post :reply
