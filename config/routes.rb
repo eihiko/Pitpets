@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  post 'trading/trade'
+
   get 'trading/requests'
 
   get 'trading/send_request'
