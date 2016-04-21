@@ -33,5 +33,19 @@ class FriendsController < ApplicationController
   end
 
   def list
+  	@friends = []
+
+  	# Get all friends where current user is user 1
+  	temp_friends = Friend.where(user_1: @current_user).all
+  	temp_friends.each do |t|
+  		@friends << User.find(t.user_2)
+	end
+
+	# Get all friends where current user is user 2
+	temp_friends = Friend.where(user_2: @current_user).all
+	temp_friends.each do |t|
+  		@friends << User.find(t.user_1)
+	end
+
   end
 end

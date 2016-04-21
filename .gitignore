@@ -39,3 +39,4 @@ bower.json
 .powenv
 
 .DS_Store
+.byebug*
