@@ -3,7 +3,14 @@
 <table style="border-spacing: 30px">
 	<% @inventory.items.each do |i| %>
 	<tr>
-		<td><%= i.type.name %></td>
+		<td><%= i.type.name %><br>
+		<%= button_to "Trade", 
+			{:controller => "trading",
+			 :action => "trade",
+			 :inventory => @inventory,
+			 :item => i},
+			 :method=>:post %>
+		</td>
 		<td><img src="<%=i.type.image_url%>"></td>
 		<td>
 		<% if ((effect = i.get_effect("Food")) != nil) %>
