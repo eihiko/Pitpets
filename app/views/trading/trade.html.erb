@@ -1,1 +1,14 @@
 <h1>Time to trade >:) </h1>
+
+<h2>Select a friend</h2>
+
+<ul>
+<% @friends.each do |f| %>
+	<li> <%= f.username %> <%= button_to "Send Request", 
+			{:controller => "trading",
+			 :action => "send_request",
+			 :to_user => f,
+			 :item => @item},
+			 :method=>:post %></li>
+<% end %>
+</ul>

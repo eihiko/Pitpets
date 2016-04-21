@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'trading/requests'
 
-  get 'trading/send_request'
+  post 'trading/send_request'
 
   get 'trading/accept'
 
