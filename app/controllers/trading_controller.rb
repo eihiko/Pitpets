@@ -25,11 +25,13 @@ class TradingController < ApplicationController
   def accept
   	_request = TradeRequest.find(params[:request])
 
-  	if _request.from_user == @current_user
+  	if _request.get_from_user == @current_user
   		_request.from_user_agrees = true
   	else
   		_request.to_user_agrees = true
   	end
+
+  	_request.save
 
   	if _request.from_user_agrees and _request.to_user_agrees
   		_request.trade
@@ -57,6 +59,7 @@ class TradingController < ApplicationController
   	_item = params[:item]
   	_request = TradeRequest.find(params[:request])
   	_request.item_to_user = _item
+  	_request.to_user_agrees = true
   	_request.save
 
   	redirect_to '/trading/requests', notice: "Added item to request!"
