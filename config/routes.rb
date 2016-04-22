@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
   post 'trading/send_request'
 
-  get 'trading/accept'
+  post 'trading/accept'
 
-  get 'trading/reject'
+  post 'trading/reject'
 
   post 'trading/item_selection'
 
