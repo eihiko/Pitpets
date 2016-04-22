@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421154312) do
+ActiveRecord::Schema.define(version: 20160422003909) do
 
   create_table "battle_turns", force: :cascade do |t|
     t.integer  "battle_id"
@@ -204,8 +204,10 @@ ActiveRecord::Schema.define(version: 20160421154312) do
     t.integer  "from_user"
     t.integer  "item_to_user"
     t.integer  "item_from_user"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "to_user_agrees",   default: false
+    t.boolean  "from_user_agrees", default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "users", force: :cascade do |t|

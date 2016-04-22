@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   get 'trading/reject'
 
+  post 'trading/item_selection'
+
+  post 'trading/select'
+
   resources :conversations, only: [:index, :show, :destroy] do
     member do
       post :reply
