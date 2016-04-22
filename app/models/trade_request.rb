@@ -18,7 +18,7 @@ class TradeRequest < ActiveRecord::Base
 
 	def trade
 		_user1 = self.get_from_user
-		_user2 = self.to_from_user
+		_user2 = self.get_to_user
 
 		_item1 = self.get_item_from_user
 		_item2 = self.get_item_to_user
