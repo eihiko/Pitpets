@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'adopt_pet/show'
+
   resources :conversations, only: [:index, :show, :destroy] do
     member do
       post :reply
