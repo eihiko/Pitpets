@@ -24,6 +24,8 @@ class FriendsController < ApplicationController
   		users.delete_if {|u| u.id == r.to_user}
   	end
 
+  	users.delete_if {|u| u.id == @current_user.id}
+
 	users
   end
 
