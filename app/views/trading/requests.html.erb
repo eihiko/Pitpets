@@ -1,2 +1,33 @@
-<h1>Trading#requests</h1>
-<p>Find me in app/views/trading/requests.html.erb</p>
+<h1>Trading Requests</h1>
+
+
+<table>
+	<tr>
+		<td>
+			<h3>Outgoing Requests</h3>
+			<ul><% @outgoing_requests.each do |r|%>
+				<li>Trading your <%= r.get_item_from_user.type.name %> to <%= r.get_to_user.username %></li>
+			<% end %></ul>
+		</td>
+		<td style="padding-left: 30px">
+			<h3>Incoming Requests</h3>
+				<ul><% @incoming_requests.each do |r|%>
+					<li><%= r.get_from_user.username %> wants to trade a <%= r.get_item_from_user.type.name %>
+					<%= button_to "Select an Item", 
+						{:controller => "trading",
+						 :action => "item_selection",
+						 :request => r},
+						 :method=>:post %></li>
+				<% end %></ul>
+		</td>
+		<td style="padding-left: 30px">
+			<h3>Ready to decide</h3>
+				<ul><% @final_requests_from.each do |r|%>
+					<li>Trade your <%= r.get_item_from_user.type.name %> to <%= r.get_to_user.username %> for a <%= r.get_item_to_user.type.name %></li>
+				<% end %>
+				<% @final_requests_to.each do |r|%>
+					<li>Trade your <%= r.get_item_to_user.type.name %> to <%= r.get_from_user.username %> for a <%= r.get_item_from_user.type.name %></li>
+				<% end %></ul>
+		</td>
+	</tr>
+</table>

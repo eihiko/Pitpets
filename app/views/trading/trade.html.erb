@@ -7,6 +7,7 @@
 	<li> <%= f.username %> <%= button_to "Send Request", 
 			{:controller => "trading",
 			 :action => "send_request",
+			 :from_user => @current_user,
 			 :to_user => f,
 			 :item => @item},
 			 :method=>:post %></li>

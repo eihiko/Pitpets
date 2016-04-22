@@ -1,0 +1,17 @@
+<h1>Select an Item to Trade</h1>
+
+<table style="border-spacing: 30px">
+	<% @items.each do |i| %>
+	<tr>
+		<td><%= i.type.name %><br>
+		<%= button_to "Select", 
+			{:controller => "trading",
+			 :action => "select",
+			 :item => i,
+			 :request => @request},
+			 :method=>:post %>
+		</td>
+		<td><img src="<%=i.type.image_url%>"></td>
+	</tr>
+	<% end %>
+</table>
