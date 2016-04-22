@@ -1,0 +1,2 @@
+module AdoptPetHelper
+end
