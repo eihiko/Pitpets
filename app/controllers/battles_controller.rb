@@ -69,14 +69,18 @@ class BattlesController < ApplicationController
     if params[:decision].to_i == DECISION_KEEP
       Status.transaction do
         @their_pet.owner_id = @me.id
+        @their_pet.remove_status("Captured")
         @their_pet.save!
         status_type = StatusType.find_by_name("Captured")
         @their_pet.statuses.find_by_status_type_id(status_type.id).destroy
       end
     elsif params[:decision].to_i == DECISION_KILL
-      @their_pet.kill!
+      Battle.transaction do
+        @their_pet.remove_status("Captured")
+        @their_pet.kill!
+      end
     elsif params[:decision].to_i == DECISION_RELEASE
-      # Do nothing.
+      @their_pet.remove_status("Captured")
     end
     @battle.finished = true
     if @battle.challenger.user == @me

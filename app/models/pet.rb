@@ -58,6 +58,12 @@ class Pet < ActiveRecord::Base
     return !statuses.find_by_status_type_id(status_type.id).nil?
   end
 
+  def remove_status type
+    status_type = StatusType.find_by_name(type)
+    status = statuses.find_by_status_type_id(status_type.id)
+    status.destroy unless status.nil?
+  end
+
   def inherit_stats
     breed = Breed.find(breed_id)
     self.max_health = breed.max_health
