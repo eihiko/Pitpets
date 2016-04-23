@@ -15,29 +15,39 @@ class ItemEffect < ActiveRecord::Base
 		pet.save!
 	end
 
+  def damage pet
+    pet.health -= modifier1
+  end
+
   def food pet
-    puts "Feeding #{pet.name} for #{modifier1}"
     pet.eat modifier1
   end
 
   def heal pet
-    puts "Healing #{pet.name} for #{modifier1}"
     pet.health += modifier1
   end
 
   def burn pet
-    puts "Burning #{pet.name} for #{modifier1}"
     pet.health -= modifier1
   end
 
   def freeze pet
-    puts "Freezing #{pet.name} for #{modifier1}"
     pet.health -= modifier1
   end
 
   def poison pet
-    puts "Poisoning #{pet.name} for #{modifier1}"
     pet.health -= modifier1
+  end
+
+  def capture pet
+    #If we ever switch to float chance %, we'll need to use a float random number generator
+    r = Random.rand(100)
+    if r < modifier1
+      Status.transaction do 
+        status_type = StatusType.find_by_name("Captured")
+        pet.statuses.create!(status_type_id: status_type.id)
+      end
+    end
   end
 
 end

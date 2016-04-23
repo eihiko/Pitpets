@@ -5,6 +5,8 @@ ruby '2.2.4'
 
 gem "mailboxer"
 gem "will_paginate"
+gem "pry-rails"
+gem "pry-byebug"
 
 gem 'puma'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

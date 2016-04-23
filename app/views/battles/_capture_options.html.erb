@@ -1,0 +1,4 @@
+<%= form_tag({controller: "/battles", action: "capture", id: params[:id]}, method: "post") do %>
+  <%= select_tag "decision", capture_options, multiple: false, class: "chosen", "data-placeholder" => "decide their fate..." %>
+  <%= submit_tag("deliver their fate!", id: "capture") %>
+<% end %>

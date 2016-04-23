@@ -1,6 +1,6 @@
 module MessagesHelper
   
-  def recipients_options
+  def recipient_options
     s = ""
     User.all.each do |user|
       s << "<option value='#{user.id}'>#{user.name}</option>"

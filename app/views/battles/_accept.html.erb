@@ -1,0 +1,5 @@
+<%= form_tag({controller: "/battles", action: "accept", id: @battle.id}, method: "post") do %>
+  I will DESTROY <%= @battle.challenger.user.username %> with
+  <%= select_tag "pet", pet_options, multiple: false, class: "chosen", "data-placeholder" => "choose a pet..." %>
+  <%= submit_tag "Defend your honor!" %>
+<% end %>

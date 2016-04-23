@@ -36,14 +36,27 @@ squarb = Breed.create(
   hunger_rate: 4
 )
 
+dead = StatusType.create(name: "Dead")
+captured = StatusType.create(name: "Captured")
+
+damage = EffectType.create(name: "Damage")
 heal = EffectType.create(name: "Heal")
 burn = EffectType.create(name: "Burn")
 freeze = EffectType.create(name: "Freeze")
 poison = EffectType.create(name: "Poison")
 food = EffectType.create(name: "Food")
+capture = EffectType.create(name: "Capture")
+
 
 diseased_bite = ItemType.create(name: "DiseasedBite", durability: 100, image_url: "/img/items/diseased_bite.png")
 ItemTypeEffect.create(item_type_id: diseased_bite.id, effect_type_id: poison.id, modifier1: 3)
+
+stick = ItemType.create(name: "Stick", durability: 5, image_url: "/img/items/stick.png")
+ItemTypeEffect.create(item_type_id: stick.id, effect_type_id: damage.id, modifier1: 4)
+
+bug_net = ItemType.create(name: "Bug Net", durability: 20, image_url: "/img/items/bug_net.png")
+ItemTypeEffect.create(item_type_id: bug_net.id, effect_type_id: damage.id, modifier1: 2)
+ItemTypeEffect.create(item_type_id: bug_net.id, effect_type_id: capture.id, modifier1: 50)
 
 # Seed NPC_Shop and Player inventory types
 OwnerType.create(name: "player")
@@ -58,13 +71,15 @@ ei = User.create(
   username: "eihiko",
   email: "oeihiko@gmail.com",
   password: "Hackme00",
-  password_confirmation: "Hackme00"
+  password_confirmation: "Hackme00",
+  pitpoints: 10000,
 )
 yo = User.create(
   username: "youko",
   email: "oyouko@gmail.com",
   password: "Hackme00",
-  password_confirmation: "Hackme00"
+  password_confirmation: "Hackme00",
+  pitpoints: 10000,
 )
 
 tallgrass = User.create(
@@ -90,27 +105,37 @@ Pet.create(
 Item.create_from_item_type(diseased_bite.id, {inventory_id: tallgrass.inventory.id})
 Item.create_from_item_type(diseased_bite.id, {inventory_id: tallgrass.inventory.id})
 
-purple_hat = ItemType.create(name: "Purple HAT", durability: 5000, image_url: "https://sp.yimg.com/xj/th?id=OIP.Mbac296a6cbc1dcb40a15147ad500f7d5H0&pid=15.1&P=0&w=300&h=300")
+purple_hat = ItemType.create(name: "Purple HAT", durability: 5000, image_url: "/img/items/battle/purple_hat.png", description: "A beautiful purple hat only available to the most alpha of testers. It screams \"I'M SPECIAL!\" to everyone around you. It unfortunately does not come with a volume dial.")
 
 ItemTypeEffect.create(item_type_id: purple_hat.id, effect_type_id: heal.id, modifier1: 50, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 ItemTypeEffect.create(item_type_id: purple_hat.id, effect_type_id: burn.id, modifier1: 100, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 ItemTypeEffect.create(item_type_id: purple_hat.id, effect_type_id: freeze.id, modifier1: 500, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 
-item1 = Item.create(item_type_id: purple_hat.id, durability: 5, expires: nil, inventory_id: shop.inventory.id)
-item2 = Item.create(item_type_id: purple_hat.id, durability: 4000, expires: nil, inventory_id: shop.inventory.id)
 
 Item.create_from_item_type(purple_hat.id, {inventory_id: ei.inventory.id})
 Item.create_from_item_type(purple_hat.id, {inventory_id: ei.inventory.id})
 Item.create_from_item_type(purple_hat.id, {inventory_id: yo.inventory.id})
 Item.create_from_item_type(purple_hat.id, {inventory_id: yo.inventory.id})
 
-ItemEffect.create(item_id: item1.id, effect_type_id: heal.id, modifier1: 50, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
-ItemEffect.create(item_id: item1.id, effect_type_id: burn.id, modifier1: 100, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
-ItemEffect.create(item_id: item1.id, effect_type_id: freeze.id, modifier1: 500, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
-ItemEffect.create(item_id: item1.id, effect_type_id: poison.id, modifier1: 2, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
-ItemEffect.create(item_id: item1.id, effect_type_id: food.id, modifier1: 50, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+#Tupperware of Leftovers seed
+tupperware_of_leftovers = ItemType.create(name: "Tupperware of Leftovers", durability: 1, image_url: "/img/items/foods/tupperware_of_leftovers.png", description: "Is it beef? Is it peanut butter? Is it moving? Only YOU can find out. Try not to die doing so.")
+ItemTypeEffect.create(item_type_id: tupperware_of_leftovers.id, effect_type_id: food.id, modifier1: 25, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+ItemTypeEffect.create(item_type_id: tupperware_of_leftovers.id, effect_type_id: poison.id, modifier1: 5, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 
-ItemEffect.create(item_id: item2.id, effect_type_id: heal.id, modifier1: 50, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
-ItemEffect.create(item_id: item2.id, effect_type_id: burn.id, modifier1: 100, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
-ItemEffect.create(item_id: item2.id, effect_type_id: freeze.id, modifier1: 500, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+#Larry's Lunch seed
+larrys_lunch = ItemType.create(name: "Larry's Lunch", durability: 1, image_url: "/img/items/foods/larrys_lunch.png", description: "A brown bag lunch that says \"Larry\" on the side. It contains a balogna sandwich, an apple, and fruit gummy snacks.")
+ItemTypeEffect.create(item_type_id: larrys_lunch.id, effect_type_id: food.id, modifier1: 15, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
 
+#Tommy's Lunch seed
+tommys_lunch = ItemType.create(name: "Tommy's Lunch", durability: 1, image_url: "/img/items/foods/tommys_lunch.png", description: "A brown bag lunch that says \"Tommy\" on the side. It contains a child-sized store bought lunch pack - the construct your own pizza type. There is a handwritten note with a smiley face that reads \"Have a great day at school! Love you, Little T. -Dad\"")
+ItemTypeEffect.create(item_type_id: tommys_lunch.id, effect_type_id: food.id, modifier1: 8, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+
+#Band Aid seed
+band_aid = ItemType.create(name: "Band Aid", durability: 1, image_url: "/img/items/battle/band_aid.png", description: "A fine-looking band aid. Use it for cuts, scrapes, boo-boos, and near-mortal wounds.")
+ItemTypeEffect.create(item_type_id: band_aid.id, effect_type_id: heal.id, modifier1: 30, modifier2: nil, modifier3: nil, time_modifier: nil, text_modifier: nil)
+
+
+shop_purple_hat = Item.create_from_item_type(purple_hat.id, {inventory_id: shop.inventory.id, cost: 100000})
+shop_band_aid = Item.create_from_item_type(band_aid.id, {inventory_id: shop.inventory.id, cost: 150})
+Item.create_from_item_type(stick.id, {inventory_id: shop.inventory.id, cost: 500} )
+Item.create_from_item_type(bug_net.id, {inventory_id: shop.inventory.id, cost: 1000} )

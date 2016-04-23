@@ -1,5 +1,9 @@
-<% my_pet = me.pets.first %>
+<% my_pet = me.pet %>
+<% their_pet = them.pet %>
 <%= render "selected_items" %>
+<% if their_pet.captured? %>
+  <%= render "capture_options" %>
+<% end %>
 <div id="battleview">
   <%= render "contender", contender: me, who: "me" %>
   <%= render "contender", contender: them, who: "them" %>

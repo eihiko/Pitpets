@@ -9,12 +9,13 @@ class User < ActiveRecord::Base
   has_secure_password
   alias_attribute :pitpoints, :dollaz
 
-  after_create :create_inventory
-  after_create :create_human
+  after_create :create_inventory, :create_human
+  after_touch :create_human
 
   has_many :contenders
   has_many :battles, through: :contenders
   has_many :pets, foreign_key: :owner_id
+  has_many :food_kitchen_visits
   belongs_to :inventories
 
   def name
@@ -57,6 +58,7 @@ class User < ActiveRecord::Base
 
   def create_human
     human = Breed.find_by_name("Human")
+    return unless pets.find_by_breed_id(human.id).nil?
     Pet.create(
       name: self.username,
       breed_id: human.id,

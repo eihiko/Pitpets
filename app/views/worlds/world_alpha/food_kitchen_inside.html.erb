@@ -1,0 +1,7 @@
+<h1>Inside Food Kitchen</h1>
+<p><%= @dialog %></p>
+<% if (!@food_item.nil?) %>
+	<p>You found a <%= @food_item.item_type.name %></p>
+	<img src=<%= @food_item.item_type.image_url %>>
+<% end %>
+<p><%= link_to "Back to World Alpha", controller: "world_alpha", action: "index" %></p>

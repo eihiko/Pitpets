@@ -1,5 +1,5 @@
-<% them = @battle.opponent.user %>
-<% their_name = them.username %>
+<% them = @battle.opponent %>
+<% their_name = them.user.username %>
 <% if @battle.nil? %>
   <p> No battle! </p>
 <% elsif @battle.accepted.nil? %>
@@ -7,7 +7,7 @@
 <% elsif !@battle.accepted %>
   <p><%= their_name %> has declined your call to battle! What disgusting cowardice!</p>
 <% elsif !@battle.finished %>
-  <%= render "battle", me: @current_user, them: them %>
+  <%= render "battle", me: @battle.challenger, them: them %>
 <% elsif @battle.won %>
   <p> You defeated <%= their_name %> in glorious combat! Huzzah! </p>
 <% else %>
