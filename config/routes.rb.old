@@ -1,19 +1,68 @@
 Rails.application.routes.draw do
+
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+      post :reply
+    end
+  end
+
+  resources :messages, only: [:new, :create]
+
+  get "/battles" => "battles#index"
+
+  get "/battles/:id/accept" => "battles#accept"
+
+  get "/battles/:id/decline" => "battles#decline"
+
+  get "/battles/with/:username" => "battles#with"
+
+  get "/battles/challenge/:username" => "battles#challenge"
+
+  get "/battles/:id" => "battles#show"
+
+  post "/battles/:id/turn" => "battles#turn"
+
   post '/login_attempt' => "sessions#login_attempt"
 
   get '/logout' => "sessions#logout"
 
-  get '/' => "sessions#home"
+  get '/' => "sessions#home", as: :root
 
   get '/profile' => "sessions#profile"
 
   get '/settings' => "sessions#settings"
 
+  get "/pets/:id" => "pets#show"
+
+  get "/breeds/:id" => "breeds#show"
+
+  get "/items/:id" => "item_types#show"
+
+  get "/playeritems/:id" => "items#show"
+
+  get "/inventories/:id" => "inventories#show"
+
+  post "/inventories/:id" => "inventories#feed"
+
+  get "/inventory" => "inventories#user"
+
   resources :users
+
+  # npc shops
+  get "/shops/new" => "shops#new"
+
+  get "/shops/:id" => "shops#show"
+
+  post "/shops/:id" => "shops#buy"
+  
 
   namespace :games do
 
+    get "/hungry_dog" => "hungry_dog#index"
+
     get "/tapeworm" => "tapeworm#index"
+
+    get "/injured_birb" => "injured_birb#index"
 
     get "/" => "games#index"
     
@@ -24,6 +73,8 @@ Rails.application.routes.draw do
     resources :users
 
     post "/users/:id/pay" => "users#pay"
+
+    post "/users/:id/buy" => "users#buy"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

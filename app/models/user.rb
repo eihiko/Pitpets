@@ -30,6 +30,23 @@ class User < ActiveRecord::Base
     battles.joins(:contenders).where(contenders: {user_id: user_id})
   end
 
+  def friends
+    friends = []
+
+    temp_friends = Friend.where(user_1: self).all
+    temp_friends.each do |t|
+        friends << User.find(t.user_2)
+    end
+
+    # Get all friends where current user is user 2
+    temp_friends = Friend.where(user_2: self).all
+    temp_friends.each do |t|
+        friends << User.find(t.user_1)
+    end
+
+    return friends
+  end
+
   def self.try_login(username, password)
     user = User.find_by_username(username).try(:authenticate, password)
     return user || false

@@ -1,0 +1,9 @@
+<%= render "/layouts/friendbar" %>
+
+<h1>Friends List</h1>
+
+<i>You've got a friend in me<i>
+
+<ul><% @friends.each do |f| %>
+	<li><%= f.username %></li>
+<% end %></ul>

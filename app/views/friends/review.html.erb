@@ -1,0 +1,16 @@
+<%= render "/layouts/friendbar" %>
+<h1>Friend Requests</h1>
+
+<ul>
+<% @requests.each do |r| %>
+	<li><%= r.get_from_user.username %> <%= button_to "Accept", 
+			{:controller => "friends",
+			 :action => "accept",
+			 :request => r},
+			 :method=>:post %> <%= button_to "Reject", 
+			{:controller => "friends",
+			 :action => "reject",
+			 :request => r},
+			 :method=>:post %></li>
+<% end %>
+</ul>

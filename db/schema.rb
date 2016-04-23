@@ -57,6 +57,20 @@ ActiveRecord::Schema.define(version: 20160422043949) do
     t.datetime "updated_at"
   end
 
+  create_table "friend_requests", force: :cascade do |t|
+    t.integer  "to_user"
+    t.integer  "from_user"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.integer  "user_1"
+    t.integer  "user_2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "inventories", force: :cascade do |t|
     t.integer  "owner_id"
     t.integer  "owner_type_id"
