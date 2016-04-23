@@ -2,6 +2,7 @@ class Pet < ActiveRecord::Base
 
 	belongs_to :breed
   belongs_to :owner, class_name: :User
+  has_many: adopt_pet
 
   before_create :inherit_stats
 
@@ -31,11 +32,6 @@ class Pet < ActiveRecord::Base
     self.hunger_rate = breed.hunger_rate
     self.hunger_base = 0
     self.last_fed = DateTime.now.to_time
-  end
-
-  def self.random
-    pid = connection.select_all("SELECT breed_id FROM pets")
-    find(pid[rand(pid.length)]["breed_id"].to_i) unless pid.blank?
   end
 
 end

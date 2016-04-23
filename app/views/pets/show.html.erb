@@ -8,3 +8,16 @@
 <p>Dexterity: <%= @pet.dexterity %></p>
 <p>Defense: <%= @pet.defense %></p>
 
+<%= form_tag(random_pets_path, method: :post) do %>
+  <ul>
+    <% Breed.all.each do |breed| %>
+      <li>
+      <label class='breed-select'>
+        <%= check_box_tag 'breed_id[]', breed.id -%>
+        <%=  breed.name %>
+      </label>
+      </li>
+    <% end %>
+  </ul>
+  <%= submit_tag "Generate Pets"%>
+<% end%>

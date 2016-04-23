@@ -83,6 +83,8 @@ Rails.application.routes.draw do
     post "/users/:id/buy" => "users#buy"
   end
 
+    post "/random-pets", to: "pets#random_pets", as: :random_pets
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
