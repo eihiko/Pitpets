@@ -10,15 +10,17 @@ Rails.application.routes.draw do
 
   get "/battles" => "battles#index"
 
+  post "/battles/:id/capture" => "battles#capture"
+
   get "battles/npc" => "battles#npc"
 
-  get "/battles/:id/accept" => "battles#accept"
+  post "/battles/:id/accept" => "battles#accept"
 
   get "/battles/:id/decline" => "battles#decline"
 
   get "/battles/with/:username" => "battles#with"
 
-  get "/battles/challenge/:username" => "battles#challenge"
+  post "/battles/challenge" => "battles#challenge"
 
   get "/battles/:id" => "battles#show"
 
@@ -35,6 +37,8 @@ Rails.application.routes.draw do
   get '/settings' => "sessions#settings"
 
   get "/pets/:id" => "pets#show"
+
+  get "/pets/" => "pets#index"
 
   get "/breeds/:id" => "breeds#show"
 

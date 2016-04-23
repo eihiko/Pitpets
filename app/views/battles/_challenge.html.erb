@@ -1,0 +1,7 @@
+<%= form_tag({controller: "/battles", action: "challenge"}, method: "post") do %>
+  Challenge
+  <%= select_tag "opponent", opponent_options, multiple: false, class: "chosen", "data-placeholder" => "choose an opponent..." %>
+  with
+  <%= select_tag "pet", pet_options, multiple: false, class: "chosen", "data-placeholder" => "choose a pet..." %>
+  <%= submit_tag "Make them suffer!" %>
+<% end %>

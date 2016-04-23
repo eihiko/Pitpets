@@ -11,4 +11,16 @@ class Battle < ActiveRecord::Base
     contenders.where(challenger: false).first
   end
 
+  def contender? user
+    return challenger?(user) || opponent?(user)
+  end
+
+  def challenger? user
+    return user == challenger.user
+  end
+
+  def opponent? user
+    return user == opponent.user
+  end
+
 end

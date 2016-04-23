@@ -6,6 +6,7 @@ class ShopsController < ApplicationController
 
 	def show_by_name
 		@shop = Shop.find_by_name(params[:name])
+    render "show"
 	end
 
 	def new

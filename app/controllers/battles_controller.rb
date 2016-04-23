@@ -1,5 +1,9 @@
 class BattlesController < ApplicationController
   
+  DECISION_KEEP = 0
+  DECISION_KILL = 1
+  DECISION_RELEASE = 2
+
   def index
     @battles = @current_user.battles
   end
@@ -10,7 +14,13 @@ class BattlesController < ApplicationController
     unless @opponent && @challenger
       render text: "User #{params[:username]} not found!", status: :not_found
     else
-      @battle = @current_user.battles.where(finished: false).first
+      @battle = nil
+      @current_user.battles.where(finished: false).each do |battle|
+        @battle = battle if battle.contender? @opponent
+      end
+      unless @battle.nil?
+        redirect_to controller: "/battles", action: "show", id: @battle.id
+      end
     end
   end
 
@@ -32,19 +42,20 @@ class BattlesController < ApplicationController
 
   def challenge
     @challenger = @current_user
-    @opponent = User.find(params[:id])
+    @opponent = User.find(params[:opponent])
     unless @opponent && @challenger
       render nothing: true, status: :not_found
     end
-    b= Battle.create!
+    b = Battle.create!
+    pet = @current_user.pets.find(params[:pet])
     Contender.create!(battle_id: b.id, user_id: @challenger.id, 
-                      pet_id: @challenger.pets.first.id, challenger: true)
+                      pet_id: pet.id, challenger: true)
     Contender.create!(battle_id: b.id, user_id: @opponent.id, 
-                      pet_id: @opponent.pets.first.id)
+                      pet_id: nil)
     redirect_to controller: "battles", action: "show", id: b.id
   end
 
-  def turn
+  def capture
     @battle = @current_user.battles.find(params[:id])
     @battle.contenders.each do |contender|
       if(contender.user == @current_user)
@@ -55,7 +66,40 @@ class BattlesController < ApplicationController
         @their_pet = contender.pet
       end
     end
-    npc_turn(@battle) if @them.username == "tallgrass"
+    if params[:decision].to_i == DECISION_KEEP
+      Status.transaction do
+        @their_pet.owner_id = @me.id
+        @their_pet.save!
+        status_type = StatusType.find_by_name("Captured")
+        @their_pet.statuses.find_by_status_type_id(status_type.id).destroy
+      end
+    elsif params[:decision].to_i == DECISION_KILL
+      @their_pet.kill!
+    elsif params[:decision].to_i == DECISION_RELEASE
+      # Do nothing.
+    end
+    @battle.finished = true
+    if @battle.challenger.user == @me
+      @battle.won = true
+    else
+      @battle.won = false
+    end
+    @battle.save!
+    redirect_to controller: "/battles", action: "show", id: @battle.id
+  end
+
+  def turn
+    @battle = @current_user.battles.find(params[:id])
+    @battle.contenders.each do |contender|
+      if(contender.user == @current_user)
+        @me = contender
+        @my_pet = contender.pet
+      else
+        @them = contender
+        @their_pet = contender.pet
+      end
+    end
+    npc_turn(@battle) if @them.user.username == "tallgrass"
     turn = @battle.battle_turns.where(completed: false).first;
     if turn.nil?
       @battle.battle_turns.create!(
@@ -64,7 +108,7 @@ class BattlesController < ApplicationController
         defensive_item_id: params[:defensive],
         completed: false
       )
-    elsif turn.contender.user.id == @me.id
+    elsif turn.contender.id == @me.id
       flash.alert = "You already did your turn bro!"
     else
       my_turn = @battle.battle_turns.new(
@@ -123,9 +167,14 @@ class BattlesController < ApplicationController
   def accept
     @battle = @current_user.battles.find(params[:id])
     if @battle.accepted.nil?
-      @battle.accepted = true
-      @battle.started = true
-      @battle.save!
+      Battle.transaction do
+        @opponent = @battle.opponent 
+        @opponent.pet = @current_user.pets.find(params[:pet])
+        @battle.accepted = true
+        @battle.started = true
+        @battle.save!
+        @opponent.save!
+      end
     end
     redirect_to controller: "battles", action: "show", id: @battle.id
   end

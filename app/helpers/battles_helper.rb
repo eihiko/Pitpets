@@ -31,4 +31,21 @@ module BattlesHelper
     
   end
 
+  def capture_options
+    s = ""
+    s << "<option value='0'>keep them</option>"
+    s << "<option value='1'>kill them</option>"
+    s << "<option value='2'>release them</option>"
+    s.html_safe
+  end
+
+  def opponent_options
+    s = ""
+    User.all.each do |user|
+      next if user == @current_user
+      s << "<option value='#{user.id}'>#{user.name}</option>"
+    end
+    s.html_safe
+  end
+
 end

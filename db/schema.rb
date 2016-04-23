@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416190310) do
+ActiveRecord::Schema.define(version: 20160422043949) do
 
   create_table "battle_turns", force: :cascade do |t|
     t.integer  "battle_id"
@@ -192,6 +192,15 @@ ActiveRecord::Schema.define(version: 20160416190310) do
   end
 
   add_index "shops", ["shopkeeper_id"], name: "index_shops_on_shopkeeper_id"
+
+  create_table "status_types", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.integer "pet_id"
+    t.integer "status_type_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

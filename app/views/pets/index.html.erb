@@ -1,0 +1,7 @@
+<h1>Your pets</h1>
+<% @pets.each do |pet| %>
+  <img src=<%= pet.breed.image_url %>>
+  <%= link_to "#{pet.name}", controller: "/pets", action: "show", id: pet.id %>
+  <br />
+<% end %>
+

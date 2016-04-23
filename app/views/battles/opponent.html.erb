@@ -1,10 +1,10 @@
-<% them = @battle.challenger.user %>
-<% their_name = them.username %>
+<% them = @battle.challenger %>
+<% their_name = them.user.username %>
 <% if @battle.nil? %>
   <p> No battle! </p>
 <% elsif @battle.accepted.nil? %>
   <p><%= their_name %> has challenged you to a battle. Will you fight?</p>
-<%= link_to "I will destroy them!", controller: "battles", action: "accept", id: @battle.id %>
+  <%= render "accept" %>
 <br />
 <%= link_to "They are a waste of my time. Dismiss them at once!", controller: "battles",
   action: "decline", id: @battle.id %>
@@ -12,7 +12,7 @@
 <% elsif !@battle.accepted %>
     <p>You have declined <%= their_name %>'s call to battle! What disgusting cowardice!</p>
 <% elsif !@battle.finished %>
-  <%= render "battle", me: @current_user, them: them %>
+  <%= render "battle", me: @battle.opponent, them: them %>
 <% elsif !@battle.won %>
   <p> You defeated <%= their_name %> in glorious combat! Huzzah! </p>
 <% else %>

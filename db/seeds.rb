@@ -36,14 +36,27 @@ squarb = Breed.create(
   hunger_rate: 4
 )
 
+dead = StatusType.create(name: "Dead")
+captured = StatusType.create(name: "Captured")
+
+damage = EffectType.create(name: "Damage")
 heal = EffectType.create(name: "Heal")
 burn = EffectType.create(name: "Burn")
 freeze = EffectType.create(name: "Freeze")
 poison = EffectType.create(name: "Poison")
 food = EffectType.create(name: "Food")
+capture = EffectType.create(name: "Capture")
+
 
 diseased_bite = ItemType.create(name: "DiseasedBite", durability: 100, image_url: "/img/items/diseased_bite.png")
 ItemTypeEffect.create(item_type_id: diseased_bite.id, effect_type_id: poison.id, modifier1: 3)
+
+stick = ItemType.create(name: "Stick", durability: 5, image_url: "/img/items/stick.png")
+ItemTypeEffect.create(item_type_id: stick.id, effect_type_id: damage.id, modifier1: 4)
+
+bug_net = ItemType.create(name: "Bug Net", durability: 20, image_url: "/img/items/bug_net.png")
+ItemTypeEffect.create(item_type_id: bug_net.id, effect_type_id: damage.id, modifier1: 2)
+ItemTypeEffect.create(item_type_id: bug_net.id, effect_type_id: capture.id, modifier1: 50)
 
 # Seed NPC_Shop and Player inventory types
 OwnerType.create(name: "player")
@@ -58,13 +71,15 @@ ei = User.create(
   username: "eihiko",
   email: "oeihiko@gmail.com",
   password: "Hackme00",
-  password_confirmation: "Hackme00"
+  password_confirmation: "Hackme00",
+  pitpoints: 10000,
 )
 yo = User.create(
   username: "youko",
   email: "oyouko@gmail.com",
   password: "Hackme00",
-  password_confirmation: "Hackme00"
+  password_confirmation: "Hackme00",
+  pitpoints: 10000,
 )
 
 tallgrass = User.create(
@@ -122,3 +137,5 @@ ItemTypeEffect.create(item_type_id: band_aid.id, effect_type_id: heal.id, modifi
 
 shop_purple_hat = Item.create_from_item_type(purple_hat.id, {inventory_id: shop.inventory.id, cost: 100000})
 shop_band_aid = Item.create_from_item_type(band_aid.id, {inventory_id: shop.inventory.id, cost: 150})
+Item.create_from_item_type(stick.id, {inventory_id: shop.inventory.id, cost: 500} )
+Item.create_from_item_type(bug_net.id, {inventory_id: shop.inventory.id, cost: 1000} )

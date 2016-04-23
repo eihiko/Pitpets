@@ -1,3 +1,4 @@
+<%= render "challenge" %>
 <% @battles.each do |b| %>
   <p>
   <%= link_to "Battle between #{b.challenger.user.username} and #{b.opponent.user.username}:", 
