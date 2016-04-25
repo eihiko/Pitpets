@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  post 'trading/trade'
+
+  get 'trading/requests'
+
+  post 'trading/send_request'
+
+  post 'trading/accept'
+
+  post 'trading/reject'
+
+  post 'trading/item_selection'
+
+  post 'trading/select'
+
   resources :conversations, only: [:index, :show, :destroy] do
     member do
       post :reply
@@ -10,13 +24,17 @@ Rails.application.routes.draw do
 
   get "/battles" => "battles#index"
 
-  get "/battles/:id/accept" => "battles#accept"
+  post "/battles/:id/capture" => "battles#capture"
+
+  get "battles/npc" => "battles#npc"
+
+  post "/battles/:id/accept" => "battles#accept"
 
   get "/battles/:id/decline" => "battles#decline"
 
   get "/battles/with/:username" => "battles#with"
 
-  get "/battles/challenge/:username" => "battles#challenge"
+  post "/battles/challenge" => "battles#challenge"
 
   get "/battles/:id" => "battles#show"
 
@@ -34,6 +52,8 @@ Rails.application.routes.draw do
 
   get "/pets/:id" => "pets#show"
 
+  get "/pets/" => "pets#index"
+
   get "/breeds/:id" => "breeds#show"
 
   get "/items/:id" => "item_types#show"
@@ -46,6 +66,18 @@ Rails.application.routes.draw do
 
   get "/inventory" => "inventories#user"
 
+  get 'friends/find'
+
+  post 'friends/send_request' => 'friends#send_request'
+
+  get 'friends/review'
+  
+  post 'friends/accept' => 'friends#accept'
+  
+  post 'friends/reject' => 'friends#reject'
+
+  get 'friends/list'
+
   resources :users
 
   # npc shops
@@ -53,19 +85,34 @@ Rails.application.routes.draw do
 
   get "/shops/:id" => "shops#show"
 
+  get "/shops/shop_named/:name" => "shops#show_by_name"
+
+  post "/shops/shop_named/:name" => "shops#buy"
+
   post "/shops/:id" => "shops#buy"
-  
+
+  namespace :worlds do
+
+      get "/" => "worlds#index"
+
+      get "/world_alpha" => "world_alpha#index"
+
+      get "/world_alpha/food_kitchen" => "world_alpha#food_kitchen"
+
+      get "/world_alpha/food_kitchen_inside" => "world_alpha#food_kitchen_inside"
+
+  end
 
   namespace :games do
 
-    get "/hungry_dog" => "hungry_dog#index"
+    get "/space_shooter" => "space_shooter#index"
 
-    get "/tapeworm" => "tapeworm#index"
+    get "/hungry_dog" => "hungry_dog#index"
 
     get "/injured_birb" => "injured_birb#index"
 
     get "/" => "games#index"
-    
+
   end
   
   namespace :api do
@@ -75,6 +122,11 @@ Rails.application.routes.draw do
     post "/users/:id/pay" => "users#pay"
 
     post "/users/:id/buy" => "users#buy"
+
+    post "/games/quote" => "games#quote"
+
+    post "/games/submit_score" => "games#submit_score"
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
