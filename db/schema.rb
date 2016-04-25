@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422043949) do
+ActiveRecord::Schema.define(version: 20160425190051) do
 
   create_table "battle_turns", force: :cascade do |t|
     t.integer  "battle_id"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(version: 20160422043949) do
     t.integer "dexterity"
     t.integer "defense"
     t.float   "hunger_rate"
+  end
+
+  create_table "configs", force: :cascade do |t|
+    t.integer "wage", default: 725, null: false
   end
 
   create_table "contenders", force: :cascade do |t|
@@ -69,6 +73,24 @@ ActiveRecord::Schema.define(version: 20160422043949) do
     t.integer  "user_2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "game_scores", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "user_id"
+    t.float    "score"
+    t.integer  "time"
+    t.float    "ratio"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string   "guid",         null: false
+    t.string   "name",         null: false
+    t.string   "image_url"
+    t.float    "rate"
+    t.datetime "recalculated"
   end
 
   create_table "inventories", force: :cascade do |t|

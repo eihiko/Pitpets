@@ -6,6 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Config.create!()
+
+Game.create!(name: "Tapeworm")
+Game.create!(name: "Hungry Dog")
+Game.create!(name: "Injured Birb")
+Game.create!(name: "Space Shooter")
+
 Breed.create(
   name: "Human",
   image_url: "/img/pets/human.png",

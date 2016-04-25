@@ -114,7 +114,7 @@ Rails.application.routes.draw do
     get "/injured_birb" => "injured_birb#index"
 
     get "/" => "games#index"
-    
+
   end
   
   namespace :api do
@@ -124,6 +124,11 @@ Rails.application.routes.draw do
     post "/users/:id/pay" => "users#pay"
 
     post "/users/:id/buy" => "users#buy"
+
+    post "/games/quote" => "games#quote"
+
+    post "/games/submit_score" => "games#submit_score"
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
