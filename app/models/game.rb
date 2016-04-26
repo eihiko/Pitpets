@@ -11,7 +11,7 @@ class Game < ActiveRecord::Base
   end
 
   def quote!
-    unless last_calculated < 1.hour
+    unless last_calculated < 1.hour || !game_scores.empty?
       recalculate!
     end
     return rate
