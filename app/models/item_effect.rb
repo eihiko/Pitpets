@@ -3,8 +3,7 @@ class ItemEffect < ActiveRecord::Base
 	belongs_to :effect_type
 
   def apply pet
-    puts "WOOH"
-    send(effect_type.name.underscore.to_sym, pet)
+    send("fx_#{effect_type.name.underscore}".to_sym, pet)
   end
 
 	def self.food(item_id, effect_id, pet_id)
@@ -15,31 +14,31 @@ class ItemEffect < ActiveRecord::Base
 		pet.save!
 	end
 
-  def damage pet
+  def fx_damage pet
     pet.health -= modifier1
   end
 
-  def food pet
+  def fx_food pet
     pet.eat modifier1
   end
 
-  def heal pet
+  def fx_heal pet
     pet.health += modifier1
   end
 
-  def burn pet
+  def fx_burn pet
     pet.health -= modifier1
   end
 
-  def freeze pet
+  def fx_freeze pet
     pet.health -= modifier1
   end
 
-  def poison pet
+  def fx_poison pet
     pet.health -= modifier1
   end
 
-  def capture pet
+  def fx_capture pet
     #If we ever switch to float chance %, we'll need to use a float random number generator
     r = Random.rand(100)
     if r < modifier1
