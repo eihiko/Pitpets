@@ -12,7 +12,7 @@ class Game < ActiveRecord::Base
 
   def quote!
     unless last_calculated < 1.hour
-      game.recalculate!
+      recalculate!
     end
     return rate
   end
