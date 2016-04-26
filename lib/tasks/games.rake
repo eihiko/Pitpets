@@ -5,56 +5,41 @@ desc 'Install all Pitpex games in the games folder'
 
 namespace :games do
 
-  task :update do
-    Dir.chdir "games"
-    games = Dir["*.pitpex"]
-    games.each do |g|
-      next unless File.exists? "#{g}/installed"
-      name = g.chomp(".pitpex")
-      gamedata = "../../public/gamedata/#{name.underscore}"
-      viewpath = "../../app/views/games/#{name.underscore}"
-      indexpath = "/gamedata/#{name.underscore}"
-      controllerpath = "../../app/controllers/games/#{name.underscore}_controller.rb"
-      Dir.chdir g
-      Dir.mkdir gamedata unless Dir.exists? gamedata
-      Dir.mkdir viewpath unless Dir.exists? viewpath
-      FileUtils.cp_r("Release/.", gamedata)
-      FileUtils.cp_r("TemplateData/.", gamedata)
-      File.open("index.template", "r") do |template|
-        File.open("index.html.erb", "w") do |f|
-          while (!(line = template.gets).nil?)
-            line.gsub!("##PP##", indexpath)
-            line.gsub!("##PN##", name.underscore.titleize)
-            f.puts(line)
-          end
-        end
-      end
-      FileUtils.cp("index.html.erb", viewpath)
-      FileUtils.touch("installed")
-      Dir.chdir("..")
-    end
-  end
-
   task :install do
-
     Dir.chdir "games"
     games = Dir["*.pitpex"]
     games.each do |g|
       next if File.exists? "#{g}/installed"
+      puts "Installing #{g}"
       name = g.chomp(".pitpex")
       gamedata = "../../public/gamedata/#{name.underscore}"
       viewpath = "../../app/views/games/#{name.underscore}"
       indexpath = "/gamedata/#{name.underscore}"
       controllerpath = "../../app/controllers/games/#{name.underscore}_controller.rb"
       Dir.chdir g
-      Dir.mkdir gamedata unless Dir.exists? gamedata
-      Dir.mkdir viewpath unless Dir.exists? viewpath
+      if Dir.exists? gamedata
+        FileUtils.rm_rf(gamedata)
+        puts "  removing old gamedata"
+      end
+      if Dir.exists? viewpath
+        FileUtils.rm_rf(viewpath)
+        puts "  removing old views"
+      end
+      Dir.mkdir gamedata
+      Dir.mkdir viewpath
       FileUtils.cp_r("Release/.", gamedata)
       FileUtils.cp_r("TemplateData/.", gamedata)
+      puts "  installing gamedata"
+      if File.exists? controllerpath
+        FileUtils.rm(controllerpath)
+        puts "  removing old controller"
+      end
+      puts "  generating controller"
       File.open(controllerpath, "w") do |f|
         f.write("class Games::#{name.camelize}Controller < Games::GamesController")
         f.write("\nend")
       end
+      puts "  populating template"
       File.open("index.template", "r") do |template|
         File.open("index.html.erb", "w") do |f|
           while (!(line = template.gets).nil?)
@@ -64,19 +49,26 @@ namespace :games do
           end
         end
       end
+
       FileUtils.cp("index.html.erb", viewpath)
       routespath = "../../config/routes.rb"
       FileUtils.cp(routespath, "#{routespath}.old")
       File.open(routespath + ".old", "r") do |routes|
         File.open(routespath, "w") do |f|
           while(!(line = routes.gets).nil?)
-            f.puts line
+            if line.include? "    get \"/#{name.underscore}\" => \"#{name.underscore}#index\""
+              puts "  removing old route"
+            else
+              f.puts line
+            end
             if line.include? "namespace :games do"
-              f.puts "\n    get \"/#{name.underscore}\" => \"#{name.underscore}#index\""
+              f.puts "    get \"/#{name.underscore}\" => \"#{name.underscore}#index\""
+              puts "  adding new route"
             end
           end
         end
       end
+      puts "  installation complete!"
       FileUtils.touch("installed")
       Dir.chdir("..")
     end

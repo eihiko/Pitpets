@@ -104,13 +104,9 @@ Rails.application.routes.draw do
   end
 
   namespace :games do
-
     get "/tapeworm" => "tapeworm#index"
-
     get "/space_shooter" => "space_shooter#index"
-
     get "/hungry_dog" => "hungry_dog#index"
-
     get "/injured_birb" => "injured_birb#index"
 
     get "/" => "games#index"
