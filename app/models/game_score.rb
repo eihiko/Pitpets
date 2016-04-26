@@ -5,7 +5,7 @@ class GameScore < ActiveRecord::Base
   before_create :calculate_ratio
 
   def calculate_ratio
-    ratio = score / time
+    self.ratio = score / time
   end
 
 end
