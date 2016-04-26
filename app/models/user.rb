@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_secure_password
   alias_attribute :pitpoints, :dollaz
 
+  before_create :gen_guid
   after_create :create_inventory, :create_human
   after_touch :create_human
 
@@ -50,6 +51,10 @@ class User < ActiveRecord::Base
   def self.try_login(username, password)
     user = User.find_by_username(username).try(:authenticate, password)
     return user || false
+  end
+
+  def gen_guid
+    self.guid = SecureRandom.uuid
   end
 
   def create_inventory
