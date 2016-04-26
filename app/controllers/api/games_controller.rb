@@ -28,6 +28,7 @@ class Api::GamesController < ApplicationController
         time: params[:time].to_i
       )
     end
+    render nothing: true, status: :accepted
   end
 
   def show
